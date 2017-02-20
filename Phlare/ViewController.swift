@@ -23,11 +23,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         username.delegate = self
         password.delegate = self
         
-        // facebook login
-        var loginButton = FBSDKLoginButton()
-        loginButton.center = self.view.center
-        self.view.addSubview(loginButton)
-        
         // stylize the submit button
         goButton.layer.opacity = 0.8
         goButton.layer.cornerRadius = 5

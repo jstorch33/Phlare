@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D36565981E52D73400131B97 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36565971E52D73400131B97 /* Bolts.framework */; };
-		D365659A1E52D76900131B97 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36565991E52D76900131B97 /* FBSDKCoreKit.framework */; };
-		D365659C1E52D77700131B97 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D365659B1E52D77700131B97 /* FBSDKLoginKit.framework */; };
-		D365659E1E52D78600131B97 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D365659D1E52D78600131B97 /* FBSDKShareKit.framework */; };
 		D389167A1E522FD000845753 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38916791E522FD000845753 /* AppDelegate.swift */; };
 		D389167C1E522FD000845753 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D389167B1E522FD000845753 /* ViewController.swift */; };
 		D389167F1E522FD000845753 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D389167D1E522FD000845753 /* Main.storyboard */; };
@@ -38,10 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D36565971E52D73400131B97 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.19.0/Bolts.framework"; sourceTree = "<group>"; };
-		D36565991E52D76900131B97 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.19.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		D365659B1E52D77700131B97 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.19.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		D365659D1E52D78600131B97 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.19.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		D365659F1E52E33600131B97 /* Phlare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phlare-Bridging-Header.h"; sourceTree = "<group>"; };
 		D38916761E522FD000845753 /* Phlare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phlare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38916791E522FD000845753 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,10 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D365659E1E52D78600131B97 /* FBSDKShareKit.framework in Frameworks */,
-				D365659C1E52D77700131B97 /* FBSDKLoginKit.framework in Frameworks */,
-				D365659A1E52D76900131B97 /* FBSDKCoreKit.framework in Frameworks */,
-				D36565981E52D73400131B97 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,10 +78,6 @@
 		D36565961E52D73300131B97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D365659D1E52D78600131B97 /* FBSDKShareKit.framework */,
-				D365659B1E52D77700131B97 /* FBSDKLoginKit.framework */,
-				D36565991E52D76900131B97 /* FBSDKCoreKit.framework */,
-				D36565971E52D73400131B97 /* Bolts.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
