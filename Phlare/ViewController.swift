@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Properties
@@ -28,6 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         goButton.layer.cornerRadius = 5
         goButton.backgroundColor = UIColor.gray
         goButton.clipsToBounds = true
+      
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Actions
     @IBAction func didLogin(_ sender: Any) {
-        
+        performSegue(withIdentifier: "Segway", sender: self)
     }
     
 

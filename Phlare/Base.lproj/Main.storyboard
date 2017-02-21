@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -52,6 +52,17 @@
                                     <action selector="didLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DzW-Wo-kEi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OD-Lh-AEl">
+                                <rect key="frame" x="153" y="342" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" red="0.98389118909999995" green="0.99618750810000001" blue="0.99609738589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KI2-xA-3M9"/>
+                                    <segue destination="chO-f6-VOA" kind="show" identifier="Segway" id="NtQ-9N-6UU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -64,6 +75,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="tiN-TO-GX5">
+            <objects>
+                <viewController id="chO-f6-VOA" customClass="MapViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gl2-9m-uUb"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fet-Lw-xfl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zgh-Ki-Fev">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OWS-0I-o96">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OWS-0I-o96" firstAttribute="centerY" secondItem="zgh-Ki-Fev" secondAttribute="centerY" id="Xbh-2T-MRF"/>
+                            <constraint firstItem="OWS-0I-o96" firstAttribute="height" secondItem="zgh-Ki-Fev" secondAttribute="height" id="hj8-DC-Ob6"/>
+                            <constraint firstItem="OWS-0I-o96" firstAttribute="centerX" secondItem="zgh-Ki-Fev" secondAttribute="centerX" id="myC-e4-jKH"/>
+                            <constraint firstItem="OWS-0I-o96" firstAttribute="width" secondItem="zgh-Ki-Fev" secondAttribute="width" id="q6F-1z-oso"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="Map" destination="OWS-0I-o96" id="x3o-iP-Yop"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-nc-i3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="139"/>
         </scene>
     </scenes>
 </document>

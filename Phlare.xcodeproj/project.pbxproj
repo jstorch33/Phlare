@@ -14,6 +14,7 @@
 		D38916841E522FD000845753 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D38916821E522FD000845753 /* LaunchScreen.storyboard */; };
 		D389168F1E522FD000845753 /* PhlareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D389168E1E522FD000845753 /* PhlareTests.swift */; };
 		D389169A1E522FD000845753 /* PhlareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38916991E522FD000845753 /* PhlareUITests.swift */; };
+		EAFB9D341E5BB20F00FE9A3F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB9D331E5BB20F00FE9A3F /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D38916951E522FD000845753 /* PhlareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhlareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38916991E522FD000845753 /* PhlareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhlareUITests.swift; sourceTree = "<group>"; };
 		D389169B1E522FD000845753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFB9D331E5BB20F00FE9A3F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				D38916791E522FD000845753 /* AppDelegate.swift */,
+				EAFB9D331E5BB20F00FE9A3F /* MapViewController.swift */,
 				D389167B1E522FD000845753 /* ViewController.swift */,
 				D389167D1E522FD000845753 /* Main.storyboard */,
 				D38916801E522FD000845753 /* Assets.xcassets */,
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D389167C1E522FD000845753 /* ViewController.swift in Sources */,
+				EAFB9D341E5BB20F00FE9A3F /* MapViewController.swift in Sources */,
 				D389167A1E522FD000845753 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
