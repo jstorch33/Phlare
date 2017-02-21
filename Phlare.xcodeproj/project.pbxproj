@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D36B06FD1E5BCD660002BFC9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B06F91E5BCD660002BFC9 /* Bolts.framework */; };
+		D36B06FE1E5BCD660002BFC9 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B06FA1E5BCD660002BFC9 /* FBSDKCoreKit.framework */; };
+		D36B06FF1E5BCD660002BFC9 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B06FB1E5BCD660002BFC9 /* FBSDKLoginKit.framework */; };
+		D36B07001E5BCD660002BFC9 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B06FC1E5BCD660002BFC9 /* FBSDKShareKit.framework */; };
 		D389167A1E522FD000845753 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38916791E522FD000845753 /* AppDelegate.swift */; };
 		D389167C1E522FD000845753 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D389167B1E522FD000845753 /* ViewController.swift */; };
 		D389167F1E522FD000845753 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D389167D1E522FD000845753 /* Main.storyboard */; };
@@ -36,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		D365659F1E52E33600131B97 /* Phlare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phlare-Bridging-Header.h"; sourceTree = "<group>"; };
+		D36B06F91E5BCD660002BFC9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		D36B06FA1E5BCD660002BFC9 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		D36B06FB1E5BCD660002BFC9 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		D36B06FC1E5BCD660002BFC9 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		D38916761E522FD000845753 /* Phlare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phlare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38916791E522FD000845753 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D389167B1E522FD000845753 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +65,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36B07001E5BCD660002BFC9 /* FBSDKShareKit.framework in Frameworks */,
+				D36B06FD1E5BCD660002BFC9 /* Bolts.framework in Frameworks */,
+				D36B06FE1E5BCD660002BFC9 /* FBSDKCoreKit.framework in Frameworks */,
+				D36B06FF1E5BCD660002BFC9 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,9 +89,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D36565961E52D73300131B97 /* Frameworks */ = {
+		D36B06F81E5BCCE30002BFC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D36B06F91E5BCD660002BFC9 /* Bolts.framework */,
+				D36B06FA1E5BCD660002BFC9 /* FBSDKCoreKit.framework */,
+				D36B06FB1E5BCD660002BFC9 /* FBSDKLoginKit.framework */,
+				D36B06FC1E5BCD660002BFC9 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -87,11 +103,11 @@
 		D389166D1E522FCF00845753 = {
 			isa = PBXGroup;
 			children = (
+				D36B06F81E5BCCE30002BFC9 /* Frameworks */,
 				D38916781E522FD000845753 /* Phlare */,
 				D389168D1E522FD000845753 /* PhlareTests */,
 				D38916981E522FD000845753 /* PhlareUITests */,
 				D38916771E522FD000845753 /* Products */,
-				D36565961E52D73300131B97 /* Frameworks */,
 				D365659F1E52E33600131B97 /* Phlare-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
@@ -428,6 +444,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Phlare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = csm117.Phlare;
@@ -443,6 +463,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Phlare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = csm117.Phlare;

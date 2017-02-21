@@ -7,37 +7,35 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 
     // MARK: Properties
-    @IBOutlet weak var username: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var goButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // initialize IBOutlets
-        username.delegate = self
-        password.delegate = self
-        
-        // stylize the submit button
-        goButton.layer.opacity = 0.8
-        goButton.layer.cornerRadius = 5
-        goButton.backgroundColor = UIColor.gray
-        goButton.clipsToBounds = true
+        //facebook login button
+        let loginButton = FBSDKLoginButton()
+        loginButton.center = self.view.center
+        view.addSubview(loginButton)
+        loginButton.delegate = self
       
-        
-        
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print("Something went wrong...\(error)")
+            return
+        }
+        print("Successfully logged in Facebook")
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Successfully logged out of Facebook")
     }
     
     // MARK: UITextFieldDelegate
@@ -47,9 +45,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     // MARK: Actions
-    @IBAction func didLogin(_ sender: Any) {
-        performSegue(withIdentifier: "Segway", sender: self)
-    }
     
 
 
