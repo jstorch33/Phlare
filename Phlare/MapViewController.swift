@@ -10,21 +10,37 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var Map: MKMapView!
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Map.showsUserLocation = true
         // Do any additional setup after loading the view.
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
         
-        let location = CLLocationCoordinate2DMake(60, 2)
+        let location = CLLocationCoordinate2DMake(34.068565, -118.449408)
         
+        let span = MKCoordinateSpanMake(0.001, 0.001)
+        
+        let region = MKCoordinateRegion(center: location, span: span)
+        
+        Map.setRegion(region, animated: true)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "butts"
-        annotation.subtitle = "SUPERBUTTS"
+        annotation.title = "BUTTS"
+        annotation.subtitle = "eh"
         
         Map.addAnnotation(annotation)
         
