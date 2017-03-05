@@ -9,20 +9,33 @@
 import UIKit
 import MapKit
 import CoreLocation
+import MultipeerConnectivity
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
+    
+        // Properties
+    @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var Map: MKMapView!
+    @IBOutlet weak var connections: UILabel!
+    @IBOutlet weak var button: UIButton!
+    
+    var myLocation: CLLocationCoordinate2D!
+    var othersLocation:CLLocationCoordinate2D?
+
     let locationManager = CLLocationManager()
+    let communicationManager = CommunicationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        communicationManager.delegate = self
         
         self.locationManager.requestAlwaysAuthorization()
         
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
+            myLocation = locationManager.location?.coordinate
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
@@ -30,21 +43,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         //Map.showsUserLocation = true
         // Do any additional setup after loading the view.
-                
-        let location = CLLocationCoordinate2DMake(34.068565, -118.449408)
         
-        //let span = MKCoordinateSpanMake(0.001, 0.001)
         
-        //let region = MKCoordinateRegion(center: location, span: span)
-        
-        //Map.setRegion(region, animated: true)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "BUTTS"
-        annotation.subtitle = "eh"
-        
-        Map.addAnnotation(annotation)
+        var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: Selector("backgroundThread"), userInfo: nil, repeats: true)
         
     }
 
@@ -71,14 +72,209 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("Error:" + error.localizedDescription)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func changeLocation(location: String) {
+        var counter = 0
+        var lat,long:String
+        var latCoord, longCoord:Double
+        self.tempLabel.text = location
+        let dataLength = location.characters.count
+        
+        for i in location.characters {
+            if i == "@" {
+                let index = location.index(location.startIndex, offsetBy: counter)
+                lat = location.substring(to:index)
+                let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 2) )
+                long = location.substring(from:index2)
+                print("Long is: " + long)
+                print("Lat is: " + lat)
+                
+                latCoord = Double(lat)!
+                longCoord = Double(long)!
+                
+                othersLocation = CLLocationCoordinate2DMake(latCoord, longCoord)
+                print("hello")
+                break
+            }
+            counter += 1
+        }
     }
-    */
 
+    func backgroundThread() {
+        if (othersLocation != nil) {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = othersLocation!
+            annotation.title = "BUTTS"
+            annotation.subtitle = "eh"
+            Map.addAnnotation(annotation)
+            print("made annotation")
+        }
+    }
+    @IBAction func buttonPressed(_ sender: Any) {
+        communicationManager.sendLocation(userLocation: myLocation)
+
+    }
 }
+
+protocol CommunicationManagerDelegate
+{
+    
+    func connectedDevicesChanged(manager : CommunicationManager, connectedDevices: [String])
+    func locationChanged(manager: CommunicationManager, userLocation: String)
+    
+}
+
+class CommunicationManager : NSObject {
+    
+    // Service type must be a unique string, at most 15 characters long
+    // and can contain only ASCII lowercase letters, numbers and hyphens.
+    
+    var delegate : CommunicationManagerDelegate?
+    
+    private let CommunicationType = "example-data"
+    
+    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    
+    private let serviceAdvertiser : MCNearbyServiceAdvertiser
+    private let serviceBrowser : MCNearbyServiceBrowser
+    
+    override init()
+    {
+        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: CommunicationType)
+        self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: CommunicationType)
+        
+        super.init()
+        
+        self.serviceAdvertiser.delegate = self
+        self.serviceAdvertiser.startAdvertisingPeer()
+        
+        self.serviceBrowser.delegate = self
+        self.serviceBrowser.startBrowsingForPeers()
+    }
+    
+    deinit
+    {
+        self.serviceAdvertiser.stopAdvertisingPeer()
+        self.serviceBrowser.stopBrowsingForPeers()
+    }
+    
+    lazy var session : MCSession =
+        {
+            let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
+            session.delegate = self
+            return session
+    }()
+    
+    
+    func sendLocation(userLocation: CLLocationCoordinate2D ) {
+        
+        var lat = " "
+        var long = " "
+        var coordinates: String
+        lat = String(userLocation.latitude)
+        long = String(userLocation.longitude)
+        coordinates = lat + "@" + long
+
+        
+        if session.connectedPeers.count > 0 {
+            do {
+                try self.session.send(coordinates.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+            }
+            catch let error {
+                NSLog("%@", "Error for sending location: \(error)")
+            }
+        }
+    }
+}
+
+extension MapViewController : CommunicationManagerDelegate
+{
+    
+    func connectedDevicesChanged(manager: CommunicationManager, connectedDevices: [String])
+    {
+        OperationQueue.main.addOperation
+            {
+                self.connections.text = "Connections: \(connectedDevices)"
+        }
+    }
+    
+    
+    func locationChanged(manager: CommunicationManager, userLocation: String ) {
+        OperationQueue.main.addOperation
+            {
+                self.changeLocation(location:userLocation)
+        }
+    }
+}
+
+extension CommunicationManager : MCNearbyServiceAdvertiserDelegate
+{
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error)
+    {
+        NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
+    }
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void)
+    {
+        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
+        invitationHandler(true, self.session)
+    }
+    
+}
+
+extension CommunicationManager : MCNearbyServiceBrowserDelegate
+{
+    
+    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error)
+    {
+        NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
+    }
+    
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?)
+    {
+        NSLog("%@", "foundPeer: \(peerID)")
+        NSLog("%@", "invitePeer: \(peerID)")
+        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+    }
+    
+    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID)
+    {
+        NSLog("%@", "lostPeer: \(peerID)")
+    }
+    
+}
+
+extension CommunicationManager : MCSessionDelegate
+{
+    
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState)
+    {
+        NSLog("%@", "peer \(peerID) didChangeState: \(state)")
+        self.delegate?.connectedDevicesChanged(manager: self, connectedDevices:
+            session.connectedPeers.map{$0.displayName})
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID)
+    {
+        NSLog("%@", "didReceiveData: \(data)")
+        let str = String(data: data, encoding: .utf8)!
+        self.delegate?.locationChanged(manager:self, userLocation: str)
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID)
+    {
+        NSLog("%@", "didReceiveStream")
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress)
+    {
+        NSLog("%@", "didStartReceivingResourceWithName")
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?)
+    {
+        NSLog("%@", "didFinishReceivingResourceWithName")
+    }
+    
+}
+
