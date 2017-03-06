@@ -6,57 +6,65 @@
 //  Copyright © 2017 Brian Li. All rights reserved.
 //
 
+//
+//  MapViewController.swift
+//  Phlare
+//
+//  Created by Jack Storch on 2/20/17.
+//  Copyright © 2017 Brian Li. All rights reserved.
+//
+
 import UIKit
 import MapKit
 import CoreLocation
 import MultipeerConnectivity
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    
-        // Properties
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
+{
+    // Properties
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var Map: MKMapView!
     @IBOutlet weak var connections: UILabel!
     @IBOutlet weak var button: UIButton!
     
     var myLocation: CLLocationCoordinate2D!
-    var othersLocation:CLLocationCoordinate2D?
-
+    var othersLocation: CLLocationCoordinate2D?
+    
     let locationManager = CLLocationManager()
     let communicationManager = CommunicationManager()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         communicationManager.delegate = self
         
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestAlwaysAuthorization()  //asks user to use location services
         
-        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestWhenInUseAuthorization() //does the same thing as above, don't really need both
         
-        if CLLocationManager.locationServicesEnabled() {
+        if CLLocationManager.locationServicesEnabled()   //if the user allowed location services
+        {
             myLocation = locationManager.location?.coordinate
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-            self.Map.showsUserLocation = true
+            locationManager.startUpdatingLocation()  //will update users location if more accurate location is determined
+            self.Map.showsUserLocation = true        //displays user's location on map
         }
-        //Map.showsUserLocation = true
-        // Do any additional setup after loading the view.
         
-        
-        var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: Selector("backgroundThread"), userInfo: nil, repeats: true)
-        
+        //   var timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: Selector("backgroundThread"), userInfo: nil, repeats: true)
     }
-
-    override func didReceiveMemoryWarning() {
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Location Delegate Methods
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
         let location = locations.last
         
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
@@ -64,67 +72,91 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.001, 0.001))
         
         self.Map.setRegion(region, animated: true)
-
+        
         self.locationManager.stopUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
         print("Error:" + error.localizedDescription)
     }
-
-    func changeLocation(location: String) {
+    
+    func setPeerLocation(location: String)
+    {
         var counter = 0
-        var lat,long:String
-        var latCoord, longCoord:Double
+        var lat,long: String
+        var latCoord, longCoord: Double
         self.tempLabel.text = location
         let dataLength = location.characters.count
         
-        for i in location.characters {
-            if i == "@" {
+        for i in location.characters  //iterate through the string to that the our peer sent us
+        {
+            if i == "@"
+            {
                 let index = location.index(location.startIndex, offsetBy: counter)
                 lat = location.substring(to:index)
-                let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 2) )
+                
+                //I think we coud also do offsetBy: counter + 2
+                let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 2))
                 long = location.substring(from:index2)
+                
                 print("Long is: " + long)
                 print("Lat is: " + lat)
                 
-                latCoord = Double(lat)!
-                longCoord = Double(long)!
+                //lat and long are string, so cast them to doubles
+                latCoord = (Double(lat))!
+                longCoord = (Double(long))!
                 
                 othersLocation = CLLocationCoordinate2DMake(latCoord, longCoord)
+                
+                if (othersLocation != nil)
+                {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = othersLocation!
+                    annotation.title = "Peer Location"
+                    annotation.subtitle = "Other User"
+                    Map.addAnnotation(annotation)
+                    print("made annotation")
+                    
+                    //TO DO: if they lose connection, we should remove their annotation too
+                }
+                
                 print("hello")
                 break
             }
             counter += 1
         }
     }
-
-    func backgroundThread() {
-        if (othersLocation != nil) {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = othersLocation!
-            annotation.title = "BUTTS"
-            annotation.subtitle = "eh"
-            Map.addAnnotation(annotation)
-            print("made annotation")
-        }
-    }
-    @IBAction func buttonPressed(_ sender: Any) {
+    
+    /* func backgroundThread()
+     {
+     if (othersLocation != nil)
+     {
+     let annotation = MKPointAnnotation()
+     annotation.coordinate = othersLocation!
+     annotation.title = "Peer Location"
+     annotation.subtitle = "Other User"
+     Map.addAnnotation(annotation)
+     print("made annotation")
+     }
+     }
+     */
+    
+    
+    @IBAction func buttonPressed(_ sender: Any)  //if the button is pressed, we call sendLocation so that we send our location (myLocation) to nearby devices
+    {
         communicationManager.sendLocation(userLocation: myLocation)
-
     }
 }
 
 protocol CommunicationManagerDelegate
 {
-    
     func connectedDevicesChanged(manager : CommunicationManager, connectedDevices: [String])
-    func locationChanged(manager: CommunicationManager, userLocation: String)
-    
+    func peerLocation(manager: CommunicationManager, userLocation: String)
 }
 
-class CommunicationManager : NSObject {
-    
+class CommunicationManager : NSObject
+{
     // Service type must be a unique string, at most 15 characters long
     // and can contain only ASCII lowercase letters, numbers and hyphens.
     
@@ -132,10 +164,10 @@ class CommunicationManager : NSObject {
     
     private let CommunicationType = "example-data"
     
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    private let myPeerId = MCPeerID(displayName: UIDevice.current.name) //identifies your app and the user to nearby devices
     
-    private let serviceAdvertiser : MCNearbyServiceAdvertiser
-    private let serviceBrowser : MCNearbyServiceBrowser
+    private let serviceAdvertiser : MCNearbyServiceAdvertiser //notifies its delegate about invitations from nearby peers
+    private let serviceBrowser : MCNearbyServiceBrowser  //Searches for services offered by nearby devices using Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth or Ethernet, provides ability to invite those devices to a Multipeer Connectivity session (MCSession)
     
     override init()
     {
@@ -165,21 +197,28 @@ class CommunicationManager : NSObject {
     }()
     
     
-    func sendLocation(userLocation: CLLocationCoordinate2D ) {
-        
+    func sendLocation(userLocation: CLLocationCoordinate2D) //so we're trying to send our location to nearby devices
+    {
+        //initialize lat and long
         var lat = " "
         var long = " "
-        var coordinates: String
+        
+        //cast your latitude and longitude to strings
         lat = String(userLocation.latitude)
         long = String(userLocation.longitude)
-        coordinates = lat + "@" + long
-
         
-        if session.connectedPeers.count > 0 {
-            do {
+        var coordinates: String
+        coordinates = lat + "@" + long
+        
+        if session.connectedPeers.count > 0
+        {
+            do
+            {
+                //send the string of your coordinates to all of your connected peers
                 try self.session.send(coordinates.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
             }
-            catch let error {
+            catch let error
+            {
                 NSLog("%@", "Error for sending location: \(error)")
             }
         }
@@ -188,7 +227,6 @@ class CommunicationManager : NSObject {
 
 extension MapViewController : CommunicationManagerDelegate
 {
-    
     func connectedDevicesChanged(manager: CommunicationManager, connectedDevices: [String])
     {
         OperationQueue.main.addOperation
@@ -197,18 +235,17 @@ extension MapViewController : CommunicationManagerDelegate
         }
     }
     
-    
-    func locationChanged(manager: CommunicationManager, userLocation: String ) {
+    func peerLocation(manager: CommunicationManager, userLocation: String )  //used to be called locationChanged
+    {
         OperationQueue.main.addOperation
             {
-                self.changeLocation(location:userLocation)
+                self.setPeerLocation(location:userLocation)  //used to be called changeLocation
         }
     }
 }
 
 extension CommunicationManager : MCNearbyServiceAdvertiserDelegate
 {
-    
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error)
     {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
@@ -219,12 +256,10 @@ extension CommunicationManager : MCNearbyServiceAdvertiserDelegate
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
         invitationHandler(true, self.session)
     }
-    
 }
 
 extension CommunicationManager : MCNearbyServiceBrowserDelegate
 {
-    
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error)
     {
         NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
@@ -241,12 +276,10 @@ extension CommunicationManager : MCNearbyServiceBrowserDelegate
     {
         NSLog("%@", "lostPeer: \(peerID)")
     }
-    
 }
 
 extension CommunicationManager : MCSessionDelegate
 {
-    
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState)
     {
         NSLog("%@", "peer \(peerID) didChangeState: \(state)")
@@ -254,11 +287,11 @@ extension CommunicationManager : MCSessionDelegate
             session.connectedPeers.map{$0.displayName})
     }
     
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID)
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) //you get some data from a peer
     {
         NSLog("%@", "didReceiveData: \(data)")
         let str = String(data: data, encoding: .utf8)!
-        self.delegate?.locationChanged(manager:self, userLocation: str)
+        self.delegate?.peerLocation(manager:self, userLocation: str) //call peerLocation with the data the peer sent you
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID)
@@ -275,6 +308,4 @@ extension CommunicationManager : MCSessionDelegate
     {
         NSLog("%@", "didFinishReceivingResourceWithName")
     }
-    
 }
-
