@@ -83,6 +83,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func setPeerLocation(location: String)
     {
+        var bool = false
         var counter = 0
         var lat,long: String
         var latCoord, longCoord: Double
@@ -97,7 +98,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 lat = location.substring(to:index)
                 
                 //I think we coud also do offsetBy: counter + 2
-                let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 2))
+                let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 1))
                 long = location.substring(from:index2)
                 
                 print("Long is: " + long)
@@ -109,7 +110,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 othersLocation = CLLocationCoordinate2DMake(latCoord, longCoord)
                 
-                if (othersLocation != nil)
+                if (othersLocation != nil && bool == false)
                 {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = othersLocation!
@@ -117,7 +118,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     annotation.subtitle = "Other User"
                     Map.addAnnotation(annotation)
                     print("made annotation")
-                    
+                    bool = true
                     //TO DO: if they lose connection, we should remove their annotation too
                 }
                 
