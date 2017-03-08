@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -51,6 +51,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CIs-0x-fCY" secondAttribute="bottom" constant="131" id="g6E-Fn-lhR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="chO-f6-VOA" kind="show" identifier="showMap" id="18x-eJ-I94"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -176,4 +179,7 @@
             <point key="canvasLocation" x="1284" y="-519"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="18x-eJ-I94"/>
+    </inferredMetricsTieBreakers>
 </document>

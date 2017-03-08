@@ -34,6 +34,24 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         }
         print("Successfully logged in Facebook")
         
+        
+        
+        //var result
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
+            (connection, result, err) in
+            
+            if err != nil {
+                print("fail:", err)
+                return
+            }
+            
+            //http://graph.facebook.com/jack.storch.5/picture
+            print(result!)
+        }
+        
+        self.performSegue(withIdentifier: "showMap", sender: self)
+
+        
     }
 
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
