@@ -30,25 +30,12 @@
                                 <color key="textColor" red="0.97958987951278687" green="0.12355814129114151" blue="0.016925852745771408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIs-0x-fCY">
-                                <rect key="frame" x="119" y="457" width="137" height="79"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="79" id="ETi-dn-eQt"/>
-                                    <constraint firstAttribute="width" constant="137" id="TPt-oO-0NQ"/>
-                                </constraints>
-                                <state key="normal" title="Enter"/>
-                                <connections>
-                                    <segue destination="chO-f6-VOA" kind="show" id="mHY-sL-B4l"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PEh-KW-St3" firstAttribute="centerX" secondItem="CIs-0x-fCY" secondAttribute="centerX" id="5va-U3-6zu"/>
                             <constraint firstItem="PEh-KW-St3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="131" id="8ol-I5-qnE"/>
                             <constraint firstItem="PEh-KW-St3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bq1-xS-eod"/>
                             <constraint firstItem="PEh-KW-St3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-149.5" id="Fic-tL-tHz"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CIs-0x-fCY" secondAttribute="bottom" constant="131" id="g6E-Fn-lhR"/>
                         </constraints>
                     </view>
                     <connections>
@@ -179,7 +166,4 @@
             <point key="canvasLocation" x="1284" y="-519"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="18x-eJ-I94"/>
-    </inferredMetricsTieBreakers>
 </document>
