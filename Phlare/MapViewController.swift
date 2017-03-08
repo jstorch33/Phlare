@@ -98,7 +98,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let index = location.index(location.startIndex, offsetBy: counter)
                 lat = location.substring(to:index)
                 
-                let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 1))
+                //
+                let index2 = location.index(location.startIndex, offsetBy: (counter + 1))
                 long = location.substring(from:index2)
                 
                 print("Long is: " + long)
