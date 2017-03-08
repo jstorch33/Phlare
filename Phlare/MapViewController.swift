@@ -38,7 +38,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidLoad()
         
         communicationManager.delegate = self
-        
+        Map.delegate = self
+        Map.mapType = MKMapType.standard
         self.locationManager.requestAlwaysAuthorization()  //asks user to use location services
         
         self.locationManager.requestWhenInUseAuthorization() //does the same thing as above, don't really need both
@@ -97,7 +98,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let index = location.index(location.startIndex, offsetBy: counter)
                 lat = location.substring(to:index)
                 
-                //I think we coud also do offsetBy: counter + 2
                 let index2 = location.index(location.startIndex, offsetBy: (dataLength - counter - 1))
                 long = location.substring(from:index2)
                 
@@ -117,8 +117,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     annotation.title = "Peer Location"
                     annotation.subtitle = "Other User"
                     Map.addAnnotation(annotation)
-                    print("made annotation")
                     bool = true
+                    print("made annotation")
                     //TO DO: if they lose connection, we should remove their annotation too
                 }
                 
@@ -127,6 +127,50 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             counter += 1
         }
+    }
+    
+    // called when an annotation is added
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        
+        let annotationIdentifier = "AnnotationIdentifier"
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as MKAnnotationView?
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView!.canShowCallout = true
+            annotationView!.tintColor = UIColor.purple
+            annotationView!.image = UIImage(named: "burn")
+        }
+        else {
+            annotationView!.annotation = annotation
+        }
+        self.addBounceAnimationToView(view: annotationView!)
+        
+        return annotationView
+        
+    }
+    
+    func addBounceAnimationToView(view: UIView)
+    {
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale") as CAKeyframeAnimation
+        bounceAnimation.values = [ 0.05, 1.1, 0.9, 1]
+        
+        let timingFunctions = NSMutableArray(capacity: bounceAnimation.values!.count)
+        
+        for i in 0 ..< bounceAnimation.values!.count {
+            timingFunctions.add(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        }
+        bounceAnimation.timingFunctions = timingFunctions as NSArray as? [CAMediaTimingFunction]
+        bounceAnimation.isRemovedOnCompletion = false
+        
+        view.layer.add(bounceAnimation, forKey: "bounce")
     }
     
     /* func backgroundThread()
@@ -149,6 +193,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         communicationManager.sendLocation(userLocation: myLocation)
     }
 }
+
 
 protocol CommunicationManagerDelegate
 {

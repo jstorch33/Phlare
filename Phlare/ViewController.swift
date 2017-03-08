@@ -13,6 +13,8 @@ import FBSDKLoginKit
 class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 
     // MARK: Properties
+    @IBOutlet weak var profilePicture: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         loginButton.center = self.view.center
         view.addSubview(loginButton)
         loginButton.delegate = self
-      
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -32,8 +33,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
             return
         }
         print("Successfully logged in Facebook")
+        
     }
-    
+
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Successfully logged out of Facebook")
     }
