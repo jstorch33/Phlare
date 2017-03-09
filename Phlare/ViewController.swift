@@ -19,6 +19,26 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
     
     override func viewDidLoad()
     {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
+            {
+                (connection, result, err) in
+                if err != nil
+                {
+                    print("fail:", err)
+                    return
+                }
+                
+                guard let data = result as? [String:Any] else { return }
+                let fbid = data["id"]
+                let username = data["name"]
+                print("Your Facebook ID is: \(fbid!)")
+                print("Your UserName is: \(username!)")
+                
+                self.myString = fbid! as! String
+                print("This is the value of mystring: \(self.myString) ")
+                print(result!)
+        }
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,25 +53,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         
         // background image
         backgroundImage.image = #imageLiteral(resourceName: "background")
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
-        {
-            (connection, result, err) in
-            if err != nil
-            {
-                print("fail:", err)
-                return
-            }
-
-            guard let data = result as? [String:Any] else { return }
-            let fbid = data["id"]
-            let username = data["name"]
-            print("Your Facebook ID is: \(fbid!)")
-            print("Your UserName is: \(username!)")
-        
-            self.myString = fbid! as! String
-            print("This is the value of mystring: \(self.myString) ")
-            print(result!)
-        }
             
         // flame image
         flameImage.image = #imageLiteral(resourceName: "burn2")
@@ -67,6 +68,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         }
         
         print("Successfully logged in Facebook")
+        
+        
         self.performSegue(withIdentifier: "showMap", sender: self)
     }
 

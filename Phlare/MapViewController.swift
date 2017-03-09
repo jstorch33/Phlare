@@ -192,7 +192,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func buttonPressed(_ sender: Any)  //if the button is pressed, we call sendLocation so that we send our location (myLocation) to nearby devices
     {
-        communicationManager.sendLocation(userLocation: myLocation)
+        communicationManager.sendLocation(userLocation: myLocation, myFaceBookID: LabelText)   ///COME BACK HERE
     }
 }
 
@@ -245,7 +245,7 @@ class CommunicationManager : NSObject
     }()
     
     
-    func sendLocation(userLocation: CLLocationCoordinate2D) //so we're trying to send our location to nearby devices
+    func sendLocation(userLocation: CLLocationCoordinate2D, myFaceBookID: String) //so we're trying to send our location to nearby devices and our Facebook ID
     {
         //initialize lat and long
         var lat = " "
@@ -256,8 +256,8 @@ class CommunicationManager : NSObject
         long = String(userLocation.longitude)
         
         var coordinates: String
-        coordinates = lat + "@" + long
-        
+        coordinates = lat + "@" + long + myFaceBookID
+    
         if session.connectedPeers.count > 0
         {
             do
@@ -286,7 +286,7 @@ extension MapViewController : CommunicationManagerDelegate
     func peerLocation(manager: CommunicationManager, userLocation: String )  //used to be called locationChanged
     {
         OperationQueue.main.addOperation
-            {
+        {
                 self.setPeerLocation(location:userLocation)  //used to be called changeLocation
         }
     }
