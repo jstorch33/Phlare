@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,29 +26,36 @@
                                 <rect key="frame" x="-8" y="20" width="383" height="647"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHLARE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEh-KW-St3">
-                                <rect key="frame" x="92" y="166" width="191" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="191" id="GGu-1o-6Yw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="44"/>
+                                <rect key="frame" x="88" y="296" width="191" height="116"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="51"/>
                                 <color key="textColor" red="0.98389118909835815" green="0.99618750810623169" blue="0.9960973858833313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6u-hv-A4x" userLabel="flameImage">
+                                <rect key="frame" x="131" y="175" width="113" height="113"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="039-uw-B2a"/>
+                                    <constraint firstAttribute="height" constant="113" id="L2i-au-Bsq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.72922047889894914" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dfq-CS-GsM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="8" id="3FF-9n-Vhi"/>
-                            <constraint firstItem="dfq-CS-GsM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5kr-cj-qOG"/>
-                            <constraint firstItem="PEh-KW-St3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="146" id="8ol-I5-qnE"/>
-                            <constraint firstAttribute="trailing" secondItem="dfq-CS-GsM" secondAttribute="trailing" id="9Ov-Jh-iS7"/>
-                            <constraint firstItem="PEh-KW-St3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bq1-xS-eod"/>
-                            <constraint firstItem="PEh-KW-St3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-109.5" id="Fic-tL-tHz"/>
-                            <constraint firstItem="dfq-CS-GsM" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-20" id="kIM-He-t2e"/>
-                            <constraint firstItem="dfq-CS-GsM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="vs6-rg-1hG"/>
+                            <constraint firstItem="PEh-KW-St3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="10U-En-5Kg"/>
+                            <constraint firstItem="dfq-CS-GsM" firstAttribute="centerX" secondItem="a6u-hv-A4x" secondAttribute="centerX" constant="-4" id="A6V-oW-oYs"/>
+                            <constraint firstItem="dfq-CS-GsM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-24" id="BkB-3W-g4n"/>
+                            <constraint firstItem="dfq-CS-GsM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="DgW-0P-dcf"/>
+                            <constraint firstItem="a6u-hv-A4x" firstAttribute="centerX" secondItem="PEh-KW-St3" secondAttribute="centerX" constant="4" id="KE8-WG-0Qi"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PEh-KW-St3" secondAttribute="bottom" constant="255" id="XBI-fG-2WE"/>
+                            <constraint firstItem="a6u-hv-A4x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="155" id="hyF-1O-IH8"/>
+                            <constraint firstAttribute="trailing" secondItem="dfq-CS-GsM" secondAttribute="trailing" id="r0C-H0-Q7a"/>
+                            <constraint firstItem="PEh-KW-St3" firstAttribute="top" secondItem="a6u-hv-A4x" secondAttribute="bottom" constant="8" symbolic="YES" id="rmF-fb-3ma"/>
+                            <constraint firstItem="dfq-CS-GsM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="vid-IW-SE0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="dfq-CS-GsM" id="lgb-wx-tyT"/>
+                        <outlet property="flameImage" destination="a6u-hv-A4x" id="TRj-e2-5Oi"/>
                         <segue destination="chO-f6-VOA" kind="show" identifier="showMap" id="18x-eJ-I94"/>
                     </connections>
                 </viewController>
