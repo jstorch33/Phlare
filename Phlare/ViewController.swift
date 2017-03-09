@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
 
     // MARK: Properties
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     
     override func viewDidLoad() {
@@ -22,9 +23,15 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         
         //facebook login button
         let loginButton = FBSDKLoginButton()
+        loginButton.alpha = 0.95
+        loginButton.frame = CGRect(x: 200, y: 200, width: 200, height: 50)
         loginButton.center = self.view.center
         view.addSubview(loginButton)
         loginButton.delegate = self
+        
+        // background image
+        backgroundImage.image = #imageLiteral(resourceName: "background")
+        
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
