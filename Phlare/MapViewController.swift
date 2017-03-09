@@ -91,7 +91,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var lat,long: String
         var latCoord, longCoord: Double
         self.tempLabel.text = location
-        let dataLength = location.characters.count
         
         for i in location.characters  //iterate through the string to that the our peer sent us
         {
