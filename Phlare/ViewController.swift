@@ -10,14 +10,18 @@ import UIKit
 import FBSDKLoginKit
 
 
-class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate
+{
 
+    var myString = ""
+    
     // MARK: Properties
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -34,8 +38,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if error != nil {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!)
+    {
+        if error != nil
+        {
             print("Something went wrong...\(error)")
             return
         }
@@ -44,36 +50,46 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         
         
         //var result
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
+        {
             (connection, result, err) in
             
-            if err != nil {
+            if err != nil
+            {
                 print("fail:", err)
                 return
             }
             
-            //http://graph.facebook.com/jack.storch.5/picture
+            guard let data = result as? [String:Any] else { return }
+            let fbid = data["id"]
+            let username = data["name"]
+            
+            print("Your Facebook ID is: \(fbid!)")
+            print("Your UserName is: \(username!)")
+            
+            self.myString = fbid! as! String
             print(result!)
         }
         
         self.performSegue(withIdentifier: "showMap", sender: self)
-
-        
     }
 
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
+    {
         print("Successfully logged out of Facebook")
     }
     
     // MARK: UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         textField.resignFirstResponder()
         return true
     }
 
-    // MARK: Actions
-    
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let DestViewController : MapViewController = segue.destination as! MapViewController
+        DestViewController.LabelText = myString
+    }
 }
 

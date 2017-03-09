@@ -19,6 +19,8 @@ import MultipeerConnectivity
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
+    @IBOutlet weak var Label: UILabel!
+    var LabelText = String()
     // Properties
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var Map: MKMapView!
@@ -34,6 +36,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        Label.text = LabelText
         
         communicationManager.delegate = self
         Map.delegate = self
