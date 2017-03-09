@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dfq-CS-GsM" userLabel="backgroundImage">
-                                <rect key="frame" x="-8" y="20" width="383" height="647"/>
+                                <rect key="frame" x="-8" y="0.0" width="383" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHLARE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEh-KW-St3">
                                 <rect key="frame" x="88" y="296" width="191" height="116"/>
@@ -44,7 +44,7 @@
                             <constraint firstItem="PEh-KW-St3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="72" id="10U-En-5Kg"/>
                             <constraint firstItem="dfq-CS-GsM" firstAttribute="centerX" secondItem="a6u-hv-A4x" secondAttribute="centerX" constant="-4" id="A6V-oW-oYs"/>
                             <constraint firstItem="dfq-CS-GsM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-24" id="BkB-3W-g4n"/>
-                            <constraint firstItem="dfq-CS-GsM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="DgW-0P-dcf"/>
+                            <constraint firstItem="dfq-CS-GsM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="DgW-0P-dcf"/>
                             <constraint firstItem="a6u-hv-A4x" firstAttribute="centerX" secondItem="PEh-KW-St3" secondAttribute="centerX" constant="4" id="KE8-WG-0Qi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PEh-KW-St3" secondAttribute="bottom" constant="255" id="XBI-fG-2WE"/>
                             <constraint firstItem="a6u-hv-A4x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="155" id="hyF-1O-IH8"/>
