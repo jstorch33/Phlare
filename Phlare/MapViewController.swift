@@ -5,7 +5,6 @@
 //  Created by Jack Storch on 2/20/17.
 //  Copyright © 2017 Brian Li. All rights reserved.
 //
-
 //
 //  MapViewController.swift
 //  Phlare
@@ -13,7 +12,6 @@
 //  Created by Jack Storch on 2/20/17.
 //  Copyright © 2017 Brian Li. All rights reserved.
 //
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -98,6 +96,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let index = location.index(location.startIndex, offsetBy: counter)
                 lat = location.substring(to:index)
                 
+                //
                 let index2 = location.index(location.startIndex, offsetBy: (counter + 1))
                 long = location.substring(from:index2)
                 
