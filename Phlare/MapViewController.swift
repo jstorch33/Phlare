@@ -88,20 +88,31 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     {
         var bool = false
         var counter = 0
-        var lat,long: String
+        var lat = ""
+        var long = ""
+        var facebook_ID = ""
+        var facebook_name = ""
+        var atIndex = 0
+        var ampersandIndex = 0
         var latCoord, longCoord: Double
         self.tempLabel.text = location
         
-        for i in location.characters  //iterate through the string to that the our peer sent us
+        for i in location.characters  //iterate through the string that the our peer sent us
         {
+            //location contains peer's latitude, longitude, facebook ID, facebook name 
+            //these fields are seperated by @, #, and * respectively
             if i == "@"
             {
                 let index = location.index(location.startIndex, offsetBy: counter)
                 lat = location.substring(to:index)
-                
-                //
-                let index2 = location.index(location.startIndex, offsetBy: (counter + 1))
-                long = location.substring(from:index2)
+    
+                atIndex = counter
+            }
+            else if i == "#"
+            {
+                ampersandIndex = counter
+                //this gets the long coordinate
+                long = location[location.index(location.startIndex, offsetBy: atIndex + 1)...location.index(location.startIndex, offsetBy: counter - 1)]   //counter will be the ampersand index
                 
                 print("Long is: " + long)
                 print("Lat is: " + lat)
@@ -121,11 +132,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     Map.addAnnotation(annotation)
                     bool = true
                     print("made annotation")
+                    
                     //TO DO: if they lose connection, we should remove their annotation too
                 }
+            }
+            else if i == "*"
+            {
+                facebook_ID = location[location.index(location.startIndex, offsetBy: ampersandIndex + 1)...location.index(location.startIndex, offsetBy: counter - 1)]
+                print("Other User facebook id is the following: " + facebook_ID)
                 
-                print("hello")
-                break
+                let name_index = location.index(location.startIndex, offsetBy: (counter + 1)) //index fb name starts at
+                facebook_name = location.substring(from: name_index) //will go until the end of the string
+                
+                print("Other user facebook name is the following: " + facebook_name)
             }
             counter += 1
         }
@@ -192,7 +211,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func buttonPressed(_ sender: Any)  //if the button is pressed, we call sendLocation so that we send our location (myLocation) to nearby devices
     {
-        communicationManager.sendLocation(userLocation: myLocation, myFaceBookID: LabelText)   ///COME BACK HERE
+        communicationManager.sendLocation(userLocation: myLocation, ID_and_Name: LabelText)   ///COME BACK HERE
     }
 }
 
@@ -245,7 +264,7 @@ class CommunicationManager : NSObject
     }()
     
     
-    func sendLocation(userLocation: CLLocationCoordinate2D, myFaceBookID: String) //so we're trying to send our location to nearby devices and our Facebook ID
+    func sendLocation(userLocation: CLLocationCoordinate2D, ID_and_Name: String) //so we're trying to send our location to nearby devices and our Facebook ID
     {
         //initialize lat and long
         var lat = " "
@@ -256,7 +275,7 @@ class CommunicationManager : NSObject
         long = String(userLocation.longitude)
         
         var coordinates: String
-        coordinates = lat + "@" + long + myFaceBookID
+        coordinates = lat + "@" + long + "#" + ID_and_Name   //ID and name are seperated with "*" (done in viewcontroller)
     
         if session.connectedPeers.count > 0
         {
@@ -278,7 +297,7 @@ extension MapViewController : CommunicationManagerDelegate
     func connectedDevicesChanged(manager: CommunicationManager, connectedDevices: [String])
     {
         OperationQueue.main.addOperation
-            {
+        {
                 self.connections.text = "Connections: \(connectedDevices)"
         }
     }

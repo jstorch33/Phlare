@@ -10,7 +10,9 @@ import FBSDKLoginKit
 
 class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate
 {
-    var myString = "dog"
+    var facebook_ID = "no ID"
+    var facebook_name = "Smittywerbenhangermenjensen"
+    var ID_and_Name = "no ID and name"
 
     // MARK: Properties
     @IBOutlet weak var profilePicture: UIImageView!
@@ -34,8 +36,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
                 print("Your Facebook ID is: \(fbid!)")
                 print("Your UserName is: \(username!)")
                 
-                self.myString = fbid! as! String
-                print("This is the value of mystring: \(self.myString) ")
+                self.facebook_ID = fbid! as! String
+                self.facebook_name = username! as! String
+                self.ID_and_Name = self.facebook_ID + "*" + self.facebook_name
+                
+                //print("This is the value of mystring: \(self.facebook_ID) ")
                 print(result!)
         }
         
@@ -90,8 +95,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         if(segue.identifier == "showMap")
         {
             let DestViewController : MapViewController = segue.destination as! MapViewController
-            DestViewController.LabelText = self.myString
-            print("This is the value of mystring in prepareforsegue: \(self.myString) ")
+            DestViewController.LabelText = self.ID_and_Name
+            print("This is the value of mystring in prepareforsegue: \(self.ID_and_Name) ")
         }
     }
 }
