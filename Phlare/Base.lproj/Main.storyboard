@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login Page-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Login Page" id="BYZ-38-t0r" customClass="ViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -61,12 +61,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="391" y="139"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Map View-->
         <scene sceneID="tiN-TO-GX5">
             <objects>
-                <viewController id="chO-f6-VOA" customClass="MapViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map View" id="chO-f6-VOA" customClass="MapViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gl2-9m-uUb"/>
                         <viewControllerLayoutGuide type="bottom" id="Fet-Lw-xfl"/>
@@ -151,10 +151,10 @@
             </objects>
             <point key="canvasLocation" x="1311" y="139"/>
         </scene>
-        <!--Profile View-->
+        <!--User View-->
         <scene sceneID="JGl-om-2dM">
             <objects>
-                <viewController title="Profile View" id="Asc-3z-sYa" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController title="User View" id="Asc-3z-sYa" customClass="UserViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jVe-uw-8ft"/>
                         <viewControllerLayoutGuide type="bottom" id="Gri-BS-tL2"/>
@@ -188,12 +188,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZU-lP-EGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199" y="139"/>
+            <point key="canvasLocation" x="2095" y="-716"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View-->
         <scene sceneID="p59-kt-zsL">
             <objects>
-                <viewController id="ggg-R0-kDK" sceneMemberID="viewController">
+                <viewController title="Profile View" id="ggg-R0-kDK" customClass="ProfileViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0fP-od-mnx"/>
                         <viewControllerLayoutGuide type="bottom" id="jky-YY-DBS"/>
@@ -225,13 +225,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cg5-TF-vVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1310" y="-709"/>
+            <point key="canvasLocation" x="590" y="-716"/>
         </scene>
     </scenes>
     <resources>
         <image name="user" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xna-QG-26i"/>
+        <segue reference="18x-eJ-I94"/>
     </inferredMetricsTieBreakers>
 </document>
