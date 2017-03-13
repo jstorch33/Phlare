@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -107,7 +107,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="user"/>
                                 <connections>
-                                    <segue destination="Asc-3z-sYa" kind="show" id="t2g-bg-oyX"/>
+                                    <segue destination="Asc-3z-sYa" kind="show" identifier="ShowMyProfile" id="t2g-bg-oyX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5b-Tv-wib">
@@ -157,7 +157,7 @@
         <!--User View-->
         <scene sceneID="JGl-om-2dM">
             <objects>
-                <viewController title="User View" id="Asc-3z-sYa" customClass="UserViewController" sceneMemberID="viewController">
+                <viewController title="User View" id="Asc-3z-sYa" customClass="UserViewController" customModule="Phlare" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jVe-uw-8ft"/>
                         <viewControllerLayoutGuide type="bottom" id="Gri-BS-tL2"/>
@@ -188,6 +188,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="ImageID" destination="l0a-F5-KWl" id="NW4-wa-K2V"/>
+                        <outlet property="NameLabel" destination="PLc-Cv-IcZ" id="2vf-gz-vmJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZU-lP-EGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -247,6 +251,6 @@
         <image name="user" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UsY-gx-eiL"/>
+        <segue reference="Xna-QG-26i"/>
     </inferredMetricsTieBreakers>
 </document>
