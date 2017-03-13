@@ -10,13 +10,12 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var LabelText = String()
+    var name = String()
+    var id = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        print(LabelText)
         
     }
     
