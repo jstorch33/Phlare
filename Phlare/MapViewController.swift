@@ -16,6 +16,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import MultipeerConnectivity
+import FBSDKLoginKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
@@ -29,6 +30,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var connections: UILabel!
     @IBOutlet weak var button: UIButton!
     
+    var myFacebookName = "No Facebook Name Recieved"
+    var myFacebookID = "No Facebook ID Recieved"
+    
     var myLocation: CLLocationCoordinate2D!
     var othersLocation: CLLocationCoordinate2D?
     
@@ -40,6 +44,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidLoad()
         
         Label.text = LabelText
+        
+        //for loop that parses the facebook ID and facebook ID
+        var my_counter = 0
+        for i in LabelText.characters  //parse the string that holds our facebookID and name
+        {
+            if i == "*"
+            {
+                let index1 = LabelText.index(LabelText.startIndex, offsetBy: my_counter)
+                myFacebookID = LabelText.substring(to:index1)
+                
+                let index2 = LabelText.index(LabelText.startIndex, offsetBy: my_counter + 1)
+                myFacebookName = LabelText.substring(from:index2)
+            }
+            my_counter += 1
+        }
         
         communicationManager.delegate = self
         Map.delegate = self
@@ -101,13 +120,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         for i in location.characters  //iterate through the string that the our peer sent us
         {
-            //location contains peer's latitude, longitude, facebook ID, facebook name 
+            //location contains peer's latitude, longitude, facebook ID, facebook name
             //these fields are seperated by @, #, and * respectively
             if i == "@"
             {
                 let index = location.index(location.startIndex, offsetBy: counter)
                 lat = location.substring(to:index)
-    
+                
                 atIndex = counter
             }
             else if i == "#"
@@ -155,7 +174,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // called when an annotation is added
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
         
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location
@@ -166,7 +186,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as MKAnnotationView?
         
-        if annotationView == nil {
+        if annotationView == nil
+        {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView!.canShowCallout = true
@@ -185,17 +206,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
     {
         if control == view.rightCalloutAccessoryView {
-            performSegue(withIdentifier: "toProfile", sender: self)
+            performSegue(withIdentifier: "Bitches", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if(segue.identifier == "toProfile")
+        if(segue.identifier == "Bitches")
         {
             let DestViewController : ProfileViewController = segue.destination as! ProfileViewController
             DestViewController.id = self.id
             DestViewController.name = self.name
+        }
+        else if(segue.identifier == "ShowMyProfile")
+        {
+            let DestViewController : UserViewController = segue.destination as! UserViewController
+            DestViewController.NameLabelText = self.myFacebookName
+            DestViewController.IDLabelText = self.myFacebookID
+            print("This is the value of mystring in prepareforsegue: \(self.myFacebookName)")
         }
     }
     
@@ -206,7 +234,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let timingFunctions = NSMutableArray(capacity: bounceAnimation.values!.count)
         
-        for i in 0 ..< bounceAnimation.values!.count {
+        for i in 0 ..< bounceAnimation.values!.count
+        {
             timingFunctions.add(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
         }
         bounceAnimation.timingFunctions = timingFunctions as NSArray as? [CAMediaTimingFunction]
@@ -215,24 +244,34 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.layer.add(bounceAnimation, forKey: "bounce")
     }
     
-    /* func backgroundThread()
-     {
-     if (othersLocation != nil)
-     {
-     let annotation = MKPointAnnotation()
-     annotation.coordinate = othersLocation!
-     annotation.title = "Peer Location"
-     annotation.subtitle = "Other User"
-     Map.addAnnotation(annotation)
-     print("made annotation")
-     }
-     }
-     */
-    
-    
     @IBAction func buttonPressed(_ sender: Any)  //if the button is pressed, we call sendLocation so that we send our location (myLocation) to nearby devices
     {
         communicationManager.sendLocation(userLocation: myLocation, ID_and_Name: LabelText)   ///COME BACK HERE
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
+            {
+                (connection, result, err) in
+                if err != nil
+                {
+                    print("fail:", err)
+                    return
+                }
+                
+                guard let data = result as? [String:Any] else { return }
+                let fbid = data["id"]
+                let username = data["name"]
+                print("Your Facebook ID is: \(fbid!)")
+                print("Your UserName is: \(username!)")
+                
+                self.myFacebookID = fbid! as! String
+                self.myFacebookName = username! as! String
+                
+                //print("This is the value of mystring: \(self.facebook_ID) ")
+                print(result!)
+        }
     }
 }
 
@@ -297,7 +336,7 @@ class CommunicationManager : NSObject
         
         var coordinates: String
         coordinates = lat + "@" + long + "#" + ID_and_Name   //ID and name are seperated with "*" (done in viewcontroller)
-    
+        
         if session.connectedPeers.count > 0
         {
             do
@@ -318,7 +357,7 @@ extension MapViewController : CommunicationManagerDelegate
     func connectedDevicesChanged(manager: CommunicationManager, connectedDevices: [String])
     {
         OperationQueue.main.addOperation
-        {
+            {
                 self.connections.text = "Connections: \(connectedDevices)"
         }
     }
@@ -326,7 +365,7 @@ extension MapViewController : CommunicationManagerDelegate
     func peerLocation(manager: CommunicationManager, userLocation: String )  //used to be called locationChanged
     {
         OperationQueue.main.addOperation
-        {
+            {
                 self.setPeerLocation(location:userLocation)  //used to be called changeLocation
         }
     }
