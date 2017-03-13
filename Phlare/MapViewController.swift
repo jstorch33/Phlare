@@ -206,13 +206,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
     {
         if control == view.rightCalloutAccessoryView {
-            performSegue(withIdentifier: "Bitches", sender: self)
+            performSegue(withIdentifier: "toProfile", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if(segue.identifier == "Bitches")
+        if(segue.identifier == "toProfile")
         {
             let DestViewController : ProfileViewController = segue.destination as! ProfileViewController
             DestViewController.id = self.id
