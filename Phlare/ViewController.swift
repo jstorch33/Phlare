@@ -28,8 +28,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         
         let loginButton = FBSDKLoginButton()
         loginButton.alpha = 0.95
-        loginButton.frame = CGRect(x: 85, y: 410, width: 200, height: 40)
-        
+        let xcoord = (self.view.frame.size.width - 200)/2;
+        loginButton.frame = CGRect(x: xcoord, y: 410, width: 200, height: 40)
         view.addSubview(loginButton)
         loginButton.delegate = self
         
@@ -74,10 +74,16 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
                 print(result!)
         }
         
-        let goButton = UIButton(frame:CGRect(x:100, y: 100, width:1000, height:1000))
+        let xcoord = (self.view.frame.size.width - 200)/2;
+        let goButton = UIButton(frame:CGRect(x:xcoord, y: 475, width:200, height:40))
         goButton.setTitle("GO", for: .normal)
+        goButton.setTitleColor(UIColor.gray, for: .normal)
+        goButton.titleLabel!.font = UIFont(name: "Futura", size: 12)
         goButton.addTarget(self, action: #selector(goButtonPressed), for: .touchUpInside)
-        goButton.backgroundColor = UIColor.green
+        goButton.backgroundColor = UIColor.white
+        goButton.alpha = 0.6
+        goButton.clipsToBounds = true
+        goButton.layer.cornerRadius = 5
         self.view.addSubview(goButton)
     }
 
