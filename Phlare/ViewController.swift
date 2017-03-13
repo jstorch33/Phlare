@@ -21,29 +21,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
     
     override func viewDidLoad()
     {
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
-            {
-                (connection, result, err) in
-                if err != nil
-                {
-                    print("fail:", err)
-                    return
-                }
-                
-                guard let data = result as? [String:Any] else { return }
-                let fbid = data["id"]
-                let username = data["name"]
-                print("Your Facebook ID is: \(fbid!)")
-                print("Your UserName is: \(username!)")
-                
-                self.facebook_ID = fbid! as! String
-                self.facebook_name = username! as! String
-                self.ID_and_Name = self.facebook_ID + "*" + self.facebook_name
-                
-                //print("This is the value of mystring: \(self.facebook_ID) ")
-                print(result!)
-        }
-        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -74,10 +51,39 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         
         print("Successfully logged in Facebook")
         
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
+            {
+                (connection, result, err) in
+                if err != nil
+                {
+                    print("fail:", err)
+                    return
+                }
+                
+                guard let data = result as? [String:Any] else { return }
+                let fbid = data["id"]
+                let username = data["name"]
+                print("Your Facebook ID is: \(fbid!)")
+                print("Your UserName is: \(username!)")
+                
+                self.facebook_ID = fbid! as! String
+                self.facebook_name = username! as! String
+                self.ID_and_Name = self.facebook_ID + "*" + self.facebook_name
+                
+                //print("This is the value of mystring: \(self.facebook_ID) ")
+                print(result!)
+        }
         
-        self.performSegue(withIdentifier: "showMap", sender: self)
+        let goButton = UIButton(frame:CGRect(x:100, y: 100, width:1000, height:1000))
+        goButton.setTitle("GO", for: .normal)
+        goButton.addTarget(self, action: #selector(goButtonPressed), for: .touchUpInside)
+        goButton.backgroundColor = UIColor.green
+        self.view.addSubview(goButton)
     }
 
+    func goButtonPressed(_ sender: Any){
+        self.performSegue(withIdentifier: "showMap", sender: self)
+    }
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
     {
         print("Successfully logged out of Facebook")
