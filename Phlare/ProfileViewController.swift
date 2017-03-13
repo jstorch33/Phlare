@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController {
     var name = String()
     var id = String()
     
+    @IBOutlet weak var namelabel: UILabel!
+    @IBOutlet weak var image: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
