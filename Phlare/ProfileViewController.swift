@@ -18,7 +18,19 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        self.namelabel.text = name
+        self.image.image = getProfPic(id: id)
+    }
+    
+    func getProfPic(id: String) -> UIImage? {
+        if (id != "") {
+            var imgURLString = "http://graph.facebook.com/" + id + "/picture?type=large" //type=normal
+            var imgURL = NSURL(string: imgURLString)
+            var imageData = NSData(contentsOf: imgURL as! URL)
+            var image = UIImage(data: imageData as! Data)
+            return image
+        }
+        return nil
     }
     
     override func didReceiveMemoryWarning() {

@@ -157,7 +157,7 @@
         <!--User View-->
         <scene sceneID="JGl-om-2dM">
             <objects>
-                <viewController title="User View" id="Asc-3z-sYa" customClass="UserViewController" sceneMemberID="viewController">
+                <viewController title="User View" id="Asc-3z-sYa" customClass="UserViewController" customModule="Phlare" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jVe-uw-8ft"/>
                         <viewControllerLayoutGuide type="bottom" id="Gri-BS-tL2"/>
@@ -247,6 +247,6 @@
         <image name="user" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UsY-gx-eiL"/>
+        <segue reference="Xna-QG-26i"/>
     </inferredMetricsTieBreakers>
 </document>
