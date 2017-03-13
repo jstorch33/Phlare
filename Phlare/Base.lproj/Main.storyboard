@@ -109,6 +109,7 @@
                                 <connections>
                                     <segue destination="Asc-3z-sYa" kind="show" id="t2g-bg-oyX"/>
                                 </connections>
+<<<<<<< HEAD
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5b-Tv-wib">
                                 <rect key="frame" x="313" y="25" width="46" height="30"/>
@@ -116,6 +117,8 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="chO-f6-VOA" eventType="touchUpInside" id="YTX-52-Axx"/>
                                 </connections>
+=======
+>>>>>>> cf3ab4bfdf3dc42053e3c0e59cd9e05e18f76a44
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
