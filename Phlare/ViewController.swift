@@ -11,7 +11,7 @@ import FBSDKLoginKit
 class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate
 {
     var facebook_ID = "no ID"
-    var facebook_name = "Smittywerbenhangermenjensen"
+    var facebook_name = "Smittywerbenhangermenjensen" //He Was #1 !!!
     var ID_and_Name = "no ID and name"
 
     // MARK: Properties
