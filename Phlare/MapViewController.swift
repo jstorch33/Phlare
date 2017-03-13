@@ -21,6 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 {
     @IBOutlet weak var Label: UILabel!
     var LabelText = String()
+    var ID_and_Name = "no ID and name"
     // Properties
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var Map: MKMapView!
@@ -145,6 +146,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 facebook_name = location.substring(from: name_index) //will go until the end of the string
                 
                 print("Other user facebook name is the following: " + facebook_name)
+                self.ID_and_Name = facebook_ID + "*" + facebook_name
             }
             counter += 1
         }
@@ -176,6 +178,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         return annotationView
         
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
+    {
+        if control == view.rightCalloutAccessoryView {
+            performSegue(withIdentifier: "Bitches", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "Bitches")
+        {
+            let DestViewController : ProfileViewController = segue.destination as! ProfileViewController
+            DestViewController.LabelText = self.ID_and_Name
+            print("This is the value of mystring in prepareforsegue: \(self.ID_and_Name) ")
+        }
     }
     
     func addBounceAnimationToView(view: UIView)

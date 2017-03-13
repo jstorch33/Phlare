@@ -109,7 +109,6 @@
                                 <connections>
                                     <segue destination="Asc-3z-sYa" kind="show" id="t2g-bg-oyX"/>
                                 </connections>
-
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5b-Tv-wib">
                                 <rect key="frame" x="313" y="25" width="46" height="30"/>
@@ -117,7 +116,6 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="chO-f6-VOA" eventType="touchUpInside" id="YTX-52-Axx"/>
                                 </connections>
-
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,6 +145,7 @@
                         <outlet property="button" destination="N5b-Tv-wib" id="CYU-9G-3Nv"/>
                         <outlet property="connections" destination="22D-X0-j3V" id="hNa-Mu-x0b"/>
                         <outlet property="tempLabel" destination="pgA-mM-zTt" id="HQw-me-p5o"/>
+                        <segue destination="ggg-R0-kDK" kind="show" identifier="Bitches" id="nvQ-Ul-Fke"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-nc-i3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -190,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZU-lP-EGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="-716"/>
+            <point key="canvasLocation" x="2268" y="-645"/>
         </scene>
         <!--Profile View-->
         <scene sceneID="p59-kt-zsL">
@@ -213,7 +212,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <segue destination="chO-f6-VOA" kind="show" id="dB7-cg-Npa"/>
+                                    <segue destination="chO-f6-VOA" kind="show" id="UsY-gx-eiL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Q7-79-eJs">
@@ -234,13 +233,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cg5-TF-vVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="590" y="-716"/>
+            <point key="canvasLocation" x="2268" y="139"/>
         </scene>
     </scenes>
     <resources>
         <image name="user" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dB7-cg-Npa"/>
+        <segue reference="Xna-QG-26i"/>
     </inferredMetricsTieBreakers>
 </document>
