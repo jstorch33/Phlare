@@ -21,7 +21,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 {
     @IBOutlet weak var Label: UILabel!
     var LabelText = String()
-    var ID_and_Name = "no ID and name"
+    var id = "no ID"
+    var name = "nothing"
     // Properties
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var Map: MKMapView!
@@ -146,7 +147,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 facebook_name = location.substring(from: name_index) //will go until the end of the string
                 
                 print("Other user facebook name is the following: " + facebook_name)
-                self.ID_and_Name = facebook_ID + "*" + facebook_name
+                self.id = facebook_ID
+                self.name = facebook_name
             }
             counter += 1
         }
@@ -192,8 +194,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if(segue.identifier == "toProfile")
         {
             let DestViewController : ProfileViewController = segue.destination as! ProfileViewController
-            DestViewController.LabelText = self.ID_and_Name
-            print("This is the value of mystring in prepareforsegue: \(self.ID_and_Name) ")
+            DestViewController.id = self.id
+            DestViewController.name = self.name
         }
     }
     
