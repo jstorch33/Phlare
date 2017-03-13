@@ -145,7 +145,9 @@
                         <outlet property="button" destination="N5b-Tv-wib" id="CYU-9G-3Nv"/>
                         <outlet property="connections" destination="22D-X0-j3V" id="hNa-Mu-x0b"/>
                         <outlet property="tempLabel" destination="pgA-mM-zTt" id="HQw-me-p5o"/>
-                        <segue destination="ggg-R0-kDK" kind="show" identifier="Bitches" id="nvQ-Ul-Fke"/>
+                        <segue destination="ggg-R0-kDK" kind="popoverPresentation" identifier="toProfile" popoverAnchorView="OWS-0I-o96" id="nvQ-Ul-Fke">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-nc-i3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,14 +171,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLc-Cv-IcZ">
-                                <rect key="frame" x="80" y="20" width="215" height="25"/>
+                                <rect key="frame" x="80" y="28" width="215" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxL-E3-Pbh">
-                                <rect key="frame" x="16" y="19" width="23" height="27"/>
+                                <rect key="frame" x="16" y="27" width="23" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back" image="back"/>
                                 <connections>
@@ -194,7 +196,7 @@
         <!--Profile View-->
         <scene sceneID="p59-kt-zsL">
             <objects>
-                <viewController title="Profile View" id="ggg-R0-kDK" customClass="ProfileViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileView" title="Profile View" id="ggg-R0-kDK" customClass="ProfileViewController" customModule="Phlare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0fP-od-mnx"/>
                         <viewControllerLayoutGuide type="bottom" id="jky-YY-DBS"/>
@@ -207,26 +209,26 @@
                                 <rect key="frame" x="67" y="85" width="240" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEw-qX-FFd">
-                                <rect key="frame" x="16" y="18" width="25" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back" image="back"/>
-                                <connections>
-                                    <segue destination="chO-f6-VOA" kind="show" id="UsY-gx-eiL"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Q7-79-eJs">
                                 <rect key="frame" x="137" y="417" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send Phlare"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIi-2S-mGk">
-                                <rect key="frame" x="80" y="18" width="215" height="25"/>
+                                <rect key="frame" x="80" y="28" width="215" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEw-qX-FFd">
+                                <rect key="frame" x="16" y="26" width="25" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back" image="back"/>
+                                <connections>
+                                    <segue destination="chO-f6-VOA" kind="show" id="UsY-gx-eiL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -241,6 +243,6 @@
         <image name="user" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xna-QG-26i"/>
+        <segue reference="UsY-gx-eiL"/>
     </inferredMetricsTieBreakers>
 </document>
