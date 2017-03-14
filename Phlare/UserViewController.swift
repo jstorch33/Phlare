@@ -6,6 +6,8 @@ class UserViewController: UIViewController
     @IBOutlet weak var ImageID: UIImageView!
     var NameLabelText = String()
     var IDLabelText = String()
+    @IBOutlet weak var background: UIView!
+    @IBOutlet weak var background2: UIView!
     
     override func viewDidLoad()
         
@@ -14,6 +16,9 @@ class UserViewController: UIViewController
         NameLabel.text = NameLabelText
         print("the ID that userviewcontroller is getting is " + IDLabelText)
         ImageID.image = getProfPic(IDLabelText: IDLabelText)
+        ImageID.layer.cornerRadius = 8
+        background2.layer.cornerRadius = 8
+        
     }
     
     override func didReceiveMemoryWarning()
