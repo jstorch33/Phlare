@@ -55,11 +55,17 @@ class ProfileViewController: UIViewController {
     @IBAction func sendPhlarePressed(_ sender: Any) {
         phlareManager.sendData(ID_and_Name: myName)   ///COME BACK HERE
     }
+    
+    func setData(data: String)
+    {
+        self.tempLabel.text = data
+    }
 }
 
 protocol PhlareManagerDelegate
 {
     func connectedDevicesChanged(manager : PhlareManager, connectedDevices: [String])
+    func peerData(manager: PhlareManager, userData: String)
 }
 
 class PhlareManager: NSObject
@@ -130,6 +136,14 @@ extension ProfileViewController : PhlareManagerDelegate
         }
     }
     
+    func peerData(manager: PhlareManager, userData: String )  //used to be called locationChanged
+    {
+        OperationQueue.main.addOperation
+            {
+                self.setData(data:userData)  //used to be called changeLocation
+        }
+    }
+    
 }
 
 extension PhlareManager : MCNearbyServiceAdvertiserDelegate
@@ -179,6 +193,7 @@ extension PhlareManager : MCSessionDelegate
     {
         NSLog("%@", "didReceiveData: \(data)")
         let str = String(data: data, encoding: .utf8)!
+        self.delegate?.peerData(manager:self, userData: str) //call peerLocation with the data the peer sent you
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID)
