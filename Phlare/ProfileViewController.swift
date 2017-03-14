@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController
     @IBAction func sendPhlarePressed(_ sender: Any)
     {
         NameAndPhoneNumber = PhoneNumber.text! + myName
-        phlareManager.sendData(ID_and_Name: myName)   ///COME BACK HERE
+        phlareManager.sendData(ID_and_Name: NameAndPhoneNumber)   ///COME BACK HERE
     }
     
     func setData(data: String)
