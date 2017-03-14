@@ -169,6 +169,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.id = facebook_ID
                 self.name = facebook_name
             }
+            print("boiii" + self.id)
+            print("boiii" + self.name)
             counter += 1
         }
     }
@@ -206,13 +208,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
     {
         if control == view.rightCalloutAccessoryView {
-            performSegue(withIdentifier: "Bitches", sender: self)
+            performSegue(withIdentifier: "toProfile", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if(segue.identifier == "Bitches")
+        if(segue.identifier == "toProfile")
         {
             let DestViewController : ProfileViewController = segue.destination as! ProfileViewController
             DestViewController.id = self.id
@@ -269,8 +271,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.myFacebookID = fbid! as! String
                 self.myFacebookName = username! as! String
                 
-                //print("This is the value of mystring: \(self.facebook_ID) ")
-                print(result!)
+                
+                self.Label.text = self.myFacebookID + "*" + self.myFacebookName
         }
     }
 }
