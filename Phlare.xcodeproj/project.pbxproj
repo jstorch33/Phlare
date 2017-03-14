@@ -228,7 +228,7 @@
 				TargetAttributes = {
 					D38916751E522FCF00845753 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 99N263K2WA;
+						DevelopmentTeam = M7VV8PZAEY;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -454,7 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 99N263K2WA;
+				DEVELOPMENT_TEAM = M7VV8PZAEY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -462,7 +462,7 @@
 				INFOPLIST_FILE = Phlare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs117.Phlare;
+				PRODUCT_BUNDLE_IDENTIFIER = "cs117.Phlare-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Phlare-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -476,7 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 99N263K2WA;
+				DEVELOPMENT_TEAM = M7VV8PZAEY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -484,7 +484,7 @@
 				INFOPLIST_FILE = Phlare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs117.Phlare;
+				PRODUCT_BUNDLE_IDENTIFIER = "cs117.Phlare-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Phlare-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
