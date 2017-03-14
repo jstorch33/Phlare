@@ -11,7 +11,6 @@ import MultipeerConnectivity
 
 class ProfileViewController: UIViewController
 {
-    
     @IBOutlet weak var PhoneNumber: UITextField!
     
     
@@ -41,7 +40,8 @@ class ProfileViewController: UIViewController
 
         phlareManager.delegate = self
         
-        tempLabel.text = myName
+        //tempLabel.text = myName
+        tempLabel.text = name + " has not sent you a Phlare!"
         
         
         //Looks for single or multiple taps.
@@ -74,6 +74,11 @@ class ProfileViewController: UIViewController
     
     @IBAction func sendPhlarePressed(_ sender: Any)
     {
+        //make a notification that you must enter a phone number or else dont send phlare
+        if(PhoneNumber.text == "")
+        {
+            PhoneNumber.text = "This user did not send their phone number!"
+        }
         NameAndPhoneNumber = PhoneNumber.text! + "*" +  myName
         phlareManager.sendData(ID_and_Name: NameAndPhoneNumber)   ///COME BACK HERE
     }
@@ -95,12 +100,28 @@ class ProfileViewController: UIViewController
             }
             counter += 1
         }
-        //
         
         let text = theNameOfPersonWhoSentPhlare + " sent you a Phlare!"
         self.tempLabel.text = text
         
         //dynamically make a button here for the texting?
+        let xcoord = (self.view.frame.size.width - 200)/2;
+        let goButton = UIButton(frame:CGRect(x:xcoord, y: 475, width:200, height:40))
+        goButton.setTitle("GO", for: .normal)
+        goButton.setTitleColor(UIColor.gray, for: .normal)
+        goButton.titleLabel!.font = UIFont(name: "Futura", size: 12)
+        goButton.addTarget(self, action: #selector(goButtonPressed), for: .touchUpInside)
+        goButton.backgroundColor = UIColor.white
+        goButton.alpha = 0.6
+        goButton.clipsToBounds = true
+        goButton.layer.cornerRadius = 5
+        self.view.addSubview(goButton)
+        
+    }
+    
+    func goButtonPressed(_ sender: Any)
+    {
+       
     }
     
     func dismissKeyboard()
