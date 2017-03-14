@@ -24,6 +24,9 @@ class ProfileViewController: UIViewController
     var myName = String()
     var myID = String()
     
+    var theNameOfPersonWhoSentPhlare = ""
+    var thePhoneNumOfPersonWhoSentPhlare = ""
+    
     @IBOutlet weak var namelabel: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var sendPhlareButton: UIButton!
@@ -71,13 +74,33 @@ class ProfileViewController: UIViewController
     
     @IBAction func sendPhlarePressed(_ sender: Any)
     {
-        NameAndPhoneNumber = PhoneNumber.text! + myName
+        NameAndPhoneNumber = PhoneNumber.text! + "*" +  myName
         phlareManager.sendData(ID_and_Name: NameAndPhoneNumber)   ///COME BACK HERE
     }
     
-    func setData(data: String)
+    func setData(data: String)  //you got some Phlare data from a peer so set some variables
     {
-        self.tempLabel.text = data
+        var counter = 0
+        //parse the phone number and name
+        for i in data.characters
+        {
+            if i == "*"
+            {
+                let index1 = data.index(data.startIndex, offsetBy: counter)
+                thePhoneNumOfPersonWhoSentPhlare = data.substring(to:index1)
+                
+                let index2 = data.index(data.startIndex, offsetBy: counter + 1)
+                theNameOfPersonWhoSentPhlare = data.substring(from: index2)
+                
+            }
+            counter += 1
+        }
+        //
+        
+        let text = theNameOfPersonWhoSentPhlare + " sent you a Phlare!"
+        self.tempLabel.text = text
+        
+        //dynamically make a button here for the texting?
     }
     
     func dismissKeyboard()
@@ -161,11 +184,11 @@ extension ProfileViewController : PhlareManagerDelegate
         }
     }
     
-    func peerData(manager: PhlareManager, userData: String )  //used to be called locationChanged
+    func peerData(manager: PhlareManager, userData: String )
     {
         OperationQueue.main.addOperation
             {
-                self.setData(data:userData)  //used to be called changeLocation
+                self.setData(data:userData)
         }
     }
     
