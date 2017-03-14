@@ -8,8 +8,9 @@
 
 import UIKit
 import MultipeerConnectivity
+import MessageUI
 
-class ProfileViewController: UIViewController
+class ProfileViewController: UIViewController, MFMessageComposeViewControllerDelegate
 {
     @IBOutlet weak var PhoneNumber: UITextField!
     
@@ -74,7 +75,7 @@ class ProfileViewController: UIViewController
     
     @IBAction func sendPhlarePressed(_ sender: Any)
     {
-        //make a notification that you must enter a phone number or else dont send phlare
+        //tell the person who recieved the phlare that the sender did not send his/her phone number
         if(PhoneNumber.text == "")
         {
             PhoneNumber.text = "This user did not send their phone number!"
@@ -106,22 +107,34 @@ class ProfileViewController: UIViewController
         
         //dynamically make a button here for the texting?
         let xcoord = (self.view.frame.size.width - 200)/2;
-        let goButton = UIButton(frame:CGRect(x:xcoord, y: 475, width:200, height:40))
-        goButton.setTitle("GO", for: .normal)
-        goButton.setTitleColor(UIColor.gray, for: .normal)
-        goButton.titleLabel!.font = UIFont(name: "Futura", size: 12)
-        goButton.addTarget(self, action: #selector(goButtonPressed), for: .touchUpInside)
-        goButton.backgroundColor = UIColor.white
-        goButton.alpha = 0.6
-        goButton.clipsToBounds = true
-        goButton.layer.cornerRadius = 5
-        self.view.addSubview(goButton)
+        let SMSButton = UIButton(frame:CGRect(x:xcoord, y: 475, width:200, height:40))
+        SMSButton.setTitle("Send SMS", for: .normal)
+        SMSButton.setTitleColor(UIColor.gray, for: .normal)
+        SMSButton.titleLabel!.font = UIFont(name: "Futura", size: 12)
+        SMSButton.addTarget(self, action: #selector(SMSButtonPressed), for: .touchUpInside)
+        SMSButton.backgroundColor = UIColor.white
+        SMSButton.alpha = 0.6
+        SMSButton.clipsToBounds = true
+        SMSButton.layer.cornerRadius = 5
+        self.view.addSubview(SMSButton)
         
     }
     
-    func goButtonPressed(_ sender: Any)
+    func SMSButtonPressed(_ sender: Any)
     {
-       
+        
+        let messageVC = MFMessageComposeViewController()
+        
+        messageVC.body = "Enter a message";
+        messageVC.recipients = [thePhoneNumOfPersonWhoSentPhlare]   //Enter tel-nr
+        messageVC.messageComposeDelegate = self;
+        
+        self.present(messageVC, animated: true, completion: nil)
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult)
+    {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     func dismissKeyboard()
