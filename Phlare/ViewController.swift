@@ -87,9 +87,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDel
         self.view.addSubview(goButton)
     }
 
-    func goButtonPressed(_ sender: Any){
-        self.performSegue(withIdentifier: "showMap", sender: self)
+    func goButtonPressed(_ sender: Any)
+    {
+        if(self.ID_and_Name != "no ID and name") //so that you don't go to the mapviewcontroller if you dont have the users facebook data yet
+        {
+          self.performSegue(withIdentifier: "showMap", sender: self)
+        }
     }
+    
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
     {
         print("Successfully logged out of Facebook")
