@@ -9,11 +9,17 @@
 import UIKit
 import MultipeerConnectivity
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController
+{
+    
+    @IBOutlet weak var PhoneNumber: UITextField!
+    
     
     var name = String()
     var id = String()
     let phlareManager = PhlareManager()
+    
+    var NameAndPhoneNumber = ""
     
     var myName = String()
     var myID = String()
@@ -23,7 +29,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var sendPhlareButton: UIButton!
     @IBOutlet weak var tempLabel: UILabel!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         namelabel.text = name
@@ -32,6 +39,16 @@ class ProfileViewController: UIViewController {
         phlareManager.delegate = self
         
         tempLabel.text = myName
+        
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+    
     }
     
     func getProfPic(id: String) -> UIImage?
@@ -52,13 +69,21 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func sendPhlarePressed(_ sender: Any) {
+    @IBAction func sendPhlarePressed(_ sender: Any)
+    {
+        NameAndPhoneNumber = PhoneNumber.text! + myName
         phlareManager.sendData(ID_and_Name: myName)   ///COME BACK HERE
     }
     
     func setData(data: String)
     {
         self.tempLabel.text = data
+    }
+    
+    func dismissKeyboard()
+    {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 }
 
