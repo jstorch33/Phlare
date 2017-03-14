@@ -219,6 +219,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let DestViewController : ProfileViewController = segue.destination as! ProfileViewController
             DestViewController.id = self.id
             DestViewController.name = self.name
+            DestViewController.myName = self.myFacebookName
+            DestViewController.myID = self.myFacebookID
         }
         else if(segue.identifier == "ShowMyProfile")
         {
@@ -227,6 +229,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             DestViewController.IDLabelText = self.myFacebookID
             print("This is the value of mystring in prepareforsegue: \(self.myFacebookName)")
         }
+    
     }
     
     func addBounceAnimationToView(view: UIView)
