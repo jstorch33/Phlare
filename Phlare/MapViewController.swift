@@ -21,11 +21,12 @@ import FBSDKLoginKit
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
     @IBOutlet weak var Label: UILabel!
-    var LabelText = String()
+    var LabelText = String()  //label at the bottom with your own facebook data
     var id = "no ID"
     var name = "nothing"
+    
     // Properties
-    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!  //coordinates label at the top
     @IBOutlet weak var Map: MKMapView!
     @IBOutlet weak var connections: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -117,6 +118,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var ampersandIndex = 0
         var latCoord, longCoord: Double
         self.tempLabel.text = location
+        print("Hockey: " + self.tempLabel.text!)
         
         for i in location.characters  //iterate through the string that the our peer sent us
         {
@@ -251,7 +253,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func buttonPressed(_ sender: Any)  //if the button is pressed, we call sendLocation so that we send our location (myLocation) to nearby devices
     {
-        communicationManager.sendLocation(userLocation: myLocation, ID_and_Name: LabelText)   ///COME BACK HERE
+        communicationManager.sendLocation(userLocation: myLocation, ID_and_Name: Label.text!)
     }
     
     override func viewDidAppear(_ animated: Bool)
