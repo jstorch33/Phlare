@@ -145,19 +145,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 longCoord = (Double(long))!
                 
                 othersLocation = CLLocationCoordinate2DMake(latCoord, longCoord)
-                
-                if (othersLocation != nil && bool == false)
-                {
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = othersLocation!
-                    annotation.title = "Peer Location"
-                    annotation.subtitle = "Other User"
-                    Map.addAnnotation(annotation)
-                    bool = true
-                    print("made annotation")
-                    
-                    //TO DO: if they lose connection, we should remove their annotation too
-                }
             }
             else if i == "*"
             {
@@ -171,9 +158,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.id = facebook_ID
                 self.name = facebook_name
             }
-            print("boiii" + self.id)
-            print("boiii" + self.name)
+            //print("boiii" + self.id)
+            //print("boiii" + self.name)
             counter += 1
+        }
+        
+        if (othersLocation != nil && bool == false)
+        {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = othersLocation!
+            //annotation.title = "Peer Location"
+            annotation.title = facebook_name + "'s Location"
+           // annotation.subtitle = "Other User"
+            Map.addAnnotation(annotation)
+            bool = true
+            print("made annotation")
+            
+            //TO DO: if they lose connection, we should remove their annotation too
         }
     }
     
