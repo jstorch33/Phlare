@@ -259,6 +259,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidAppear(_ animated: Bool)
     {
+        self.Label.text = "Loading..."
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start
             {
                 (connection, result, err) in
@@ -277,8 +278,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.myFacebookID = fbid! as! String
                 self.myFacebookName = username! as! String
                 
-                
-                self.Label.text = self.myFacebookID + "*" + self.myFacebookName
+            
+                //self.Label.text = self.myFacebookID + "*" + self.myFacebookName
         }
     }
 }
