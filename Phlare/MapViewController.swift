@@ -280,7 +280,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 self.myFacebookName = username! as! String
                 
             
-                //self.Label.text = self.myFacebookID + "*" + self.myFacebookName
+                self.Label.isHidden = true
+                self.Label.text = self.myFacebookID + "*" + self.myFacebookName
+                
         }
     }
 }
