@@ -115,19 +115,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="N5b-Tv-wib" firstAttribute="centerY" secondItem="1Mu-p6-hfo" secondAttribute="centerY" id="9UM-9A-6tG"/>
+                            <constraint firstItem="N5b-Tv-wib" firstAttribute="centerY" secondItem="1Mu-p6-hfo" secondAttribute="centerY" id="9yY-10-3cr"/>
                             <constraint firstItem="22D-X0-j3V" firstAttribute="centerY" secondItem="1Mu-p6-hfo" secondAttribute="centerY" constant="34" id="ANH-ic-evW"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="top" secondItem="Gl2-9m-uUb" secondAttribute="bottom" constant="43" id="O7c-G8-yb6"/>
                             <constraint firstItem="22D-X0-j3V" firstAttribute="leading" secondItem="zgh-Ki-Fev" secondAttribute="leadingMargin" constant="-7" id="OXL-nu-w4s"/>
+                            <constraint firstItem="N5b-Tv-wib" firstAttribute="leading" secondItem="1Mu-p6-hfo" secondAttribute="trailing" constant="84" id="R7z-Yc-J8T"/>
                             <constraint firstItem="1Mu-p6-hfo" firstAttribute="top" secondItem="Gl2-9m-uUb" secondAttribute="bottom" constant="8" id="SGC-EM-ShK"/>
-                            <constraint firstItem="1Mu-p6-hfo" firstAttribute="baseline" secondItem="N5b-Tv-wib" secondAttribute="baseline" constant="8" id="Tmt-1u-bTF"/>
                             <constraint firstItem="Fet-Lw-xfl" firstAttribute="top" secondItem="ROq-tw-x1J" secondAttribute="bottom" constant="121" id="UZf-CG-LtN"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="centerY" secondItem="zgh-Ki-Fev" secondAttribute="centerY" constant="31.5" id="Xbh-2T-MRF"/>
-                            <constraint firstItem="N5b-Tv-wib" firstAttribute="trailing" secondItem="zgh-Ki-Fev" secondAttribute="trailingMargin" id="btM-Mx-dqn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N5b-Tv-wib" secondAttribute="trailing" id="g8A-HO-32J"/>
                             <constraint firstAttribute="trailingMargin" secondItem="22D-X0-j3V" secondAttribute="trailing" constant="45" id="kOI-zR-7FW"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="centerX" secondItem="zgh-Ki-Fev" secondAttribute="centerX" id="myC-e4-jKH"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="width" secondItem="zgh-Ki-Fev" secondAttribute="width" id="q6F-1z-oso"/>
-                            <constraint firstItem="N5b-Tv-wib" firstAttribute="leading" secondItem="1Mu-p6-hfo" secondAttribute="trailing" constant="87" id="vvm-iv-KaF"/>
                             <constraint firstItem="1Mu-p6-hfo" firstAttribute="centerX" secondItem="zgh-Ki-Fev" secondAttribute="centerX" id="yaM-si-uwA"/>
                         </constraints>
                     </view>
@@ -294,18 +293,18 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIi-2S-mGk">
-                                        <rect key="frame" x="43" y="-7" width="215" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaN-CT-eNT">
                                         <rect key="frame" x="216" y="399" width="42" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIi-2S-mGk">
+                                        <rect key="frame" x="47" y="0.0" width="215" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
