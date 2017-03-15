@@ -367,11 +367,11 @@ extension MapViewController : CommunicationManagerDelegate
         }
     }
     
-    func peerLocation(manager: CommunicationManager, userLocation: String )  //used to be called locationChanged
+    func peerLocation(manager: CommunicationManager, userLocation: String )
     {
         OperationQueue.main.addOperation
-            {
-                self.setPeerLocation(location:userLocation)  //used to be called changeLocation
+        {
+                self.setPeerLocation(location:userLocation)
         }
     }
 }
@@ -385,8 +385,46 @@ extension CommunicationManager : MCNearbyServiceAdvertiserDelegate
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void)
     {
-        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        invitationHandler(true, self.session)
+        //cast your ID and Display name to a string
+        let ID = String(describing: MCPeerID(displayName: UIDevice.current.name))
+        var ID_Display_Name = ""
+        
+        //cast the peer's ID and display name to a string
+        var Peer_ID = String(describing: peerID)
+        var Peer_ID_Display_Name = ""
+        
+        var counter1 = 0;
+        var counter2 = 0;
+        
+        //parse you ID string to find your display name
+       for i in ID.characters
+        {
+            if i == "="
+            {
+                let index = ID.index(ID.startIndex, offsetBy: counter1 + 2)
+                ID_Display_Name = ID.substring(from:index)
+            }
+            counter1 += 1
+        }
+        
+        //parse the peer's ID to find his display name
+        for i in Peer_ID.characters
+        {
+            if i == "="
+            {
+                let index = Peer_ID.index(Peer_ID.startIndex, offsetBy: counter2 + 2)
+                Peer_ID_Display_Name = Peer_ID.substring(from:index)
+            }
+            counter2 += 1
+        }
+
+        //if you and the peer that is trying to connect have the same display name, its most likely your own device trying to connect...so just dont accept the invitation to connect
+        if ID_Display_Name != Peer_ID_Display_Name
+        {
+            NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
+            invitationHandler(true, self.session)
+        }
+        
     }
 }
 

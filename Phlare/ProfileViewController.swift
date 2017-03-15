@@ -106,16 +106,16 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
         self.tempLabel.text = text
         
         //dynamically make a button here for the texting?
-        let xcoord = (self.view.frame.size.width - 200)/2;
-        let SMSButton = UIButton(frame:CGRect(x:xcoord, y: 475, width:200, height:40))
+        let xcoord = (self.view.frame.size.width - 255)/2;
+        let SMSButton = UIButton(frame:CGRect(x:xcoord, y: 540, width:255, height:52))
         SMSButton.setTitle("Send SMS", for: .normal)
-        SMSButton.setTitleColor(UIColor.gray, for: .normal)
-        SMSButton.titleLabel!.font = UIFont(name: "Futura", size: 12)
+        SMSButton.setTitleColor(UIColor.white, for: .normal)
+        SMSButton.titleLabel!.font = UIFont(name: "Futura", size: 17)
         SMSButton.addTarget(self, action: #selector(SMSButtonPressed), for: .touchUpInside)
-        SMSButton.backgroundColor = UIColor.white
+        SMSButton.backgroundColor = UIColor.green
         SMSButton.alpha = 0.6
         SMSButton.clipsToBounds = true
-        SMSButton.layer.cornerRadius = 5
+        SMSButton.layer.cornerRadius = 0
         self.view.addSubview(SMSButton)
         
     }
