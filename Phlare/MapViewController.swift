@@ -68,6 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         self.locationManager.requestWhenInUseAuthorization() //does the same thing as above, don't really need both
         
+        
         if CLLocationManager.locationServicesEnabled()   //if the user allowed location services
         {
             myLocation = locationManager.location?.coordinate
