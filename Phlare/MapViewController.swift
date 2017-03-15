@@ -26,7 +26,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var name = "nothing"
     
     // Properties
-    @IBOutlet weak var tempLabel: UILabel!  //coordinates label at the top
     @IBOutlet weak var Map: MKMapView!
     @IBOutlet weak var connections: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -118,8 +117,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var atIndex = 0
         var ampersandIndex = 0
         var latCoord, longCoord: Double
-        self.tempLabel.text = location
-        print("Hockey: " + self.tempLabel.text!)
         
         for i in location.characters  //iterate through the string that the our peer sent us
         {

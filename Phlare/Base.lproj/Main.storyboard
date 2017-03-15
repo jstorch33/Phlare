@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -84,13 +84,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgA-mM-zTt">
-                                <rect key="frame" x="54" y="92" width="260" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROq-tw-x1J">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROq-tw-x1J">
                                 <rect key="frame" x="54" y="512" width="260" height="34"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <nil key="textColor"/>
@@ -111,8 +105,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5b-Tv-wib">
-                                <rect key="frame" x="313" y="25" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="303" y="24" width="56" height="30"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <state key="normal" title="SEND"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="chO-f6-VOA" eventType="touchUpInside" id="YTX-52-Axx"/>
                                 </connections>
@@ -120,11 +115,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="pgA-mM-zTt" secondAttribute="trailing" constant="45" id="0bc-1C-7Oe"/>
+                            <constraint firstItem="N5b-Tv-wib" firstAttribute="centerY" secondItem="1Mu-p6-hfo" secondAttribute="centerY" id="9UM-9A-6tG"/>
                             <constraint firstItem="22D-X0-j3V" firstAttribute="centerY" secondItem="1Mu-p6-hfo" secondAttribute="centerY" constant="34" id="ANH-ic-evW"/>
-                            <constraint firstItem="pgA-mM-zTt" firstAttribute="top" secondItem="1Mu-p6-hfo" secondAttribute="bottom" constant="41" id="Aib-v8-25I"/>
-                            <constraint firstItem="pgA-mM-zTt" firstAttribute="leading" secondItem="ROq-tw-x1J" secondAttribute="leading" id="Iha-dl-5L2"/>
-                            <constraint firstItem="pgA-mM-zTt" firstAttribute="leading" secondItem="zgh-Ki-Fev" secondAttribute="leadingMargin" constant="38" id="Jr5-f4-FXP"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="top" secondItem="Gl2-9m-uUb" secondAttribute="bottom" constant="43" id="O7c-G8-yb6"/>
                             <constraint firstItem="22D-X0-j3V" firstAttribute="leading" secondItem="zgh-Ki-Fev" secondAttribute="leadingMargin" constant="-7" id="OXL-nu-w4s"/>
                             <constraint firstItem="1Mu-p6-hfo" firstAttribute="top" secondItem="Gl2-9m-uUb" secondAttribute="bottom" constant="8" id="SGC-EM-ShK"/>
@@ -135,7 +127,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="22D-X0-j3V" secondAttribute="trailing" constant="45" id="kOI-zR-7FW"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="centerX" secondItem="zgh-Ki-Fev" secondAttribute="centerX" id="myC-e4-jKH"/>
                             <constraint firstItem="OWS-0I-o96" firstAttribute="width" secondItem="zgh-Ki-Fev" secondAttribute="width" id="q6F-1z-oso"/>
-                            <constraint firstItem="pgA-mM-zTt" firstAttribute="trailing" secondItem="ROq-tw-x1J" secondAttribute="trailing" id="thl-fP-32c"/>
                             <constraint firstItem="N5b-Tv-wib" firstAttribute="leading" secondItem="1Mu-p6-hfo" secondAttribute="trailing" constant="87" id="vvm-iv-KaF"/>
                             <constraint firstItem="1Mu-p6-hfo" firstAttribute="centerX" secondItem="zgh-Ki-Fev" secondAttribute="centerX" id="yaM-si-uwA"/>
                         </constraints>
@@ -145,7 +136,6 @@
                         <outlet property="Map" destination="OWS-0I-o96" id="x3o-iP-Yop"/>
                         <outlet property="button" destination="N5b-Tv-wib" id="CYU-9G-3Nv"/>
                         <outlet property="connections" destination="22D-X0-j3V" id="hNa-Mu-x0b"/>
-                        <outlet property="tempLabel" destination="pgA-mM-zTt" id="HQw-me-p5o"/>
                         <segue destination="ggg-R0-kDK" kind="popoverPresentation" identifier="toProfile" popoverAnchorView="OWS-0I-o96" id="nvQ-Ul-Fke">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
@@ -153,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sts-nc-i3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1311" y="139"/>
+            <point key="canvasLocation" x="1309.5999999999999" y="138.98050974512745"/>
         </scene>
         <!--User View-->
         <scene sceneID="JGl-om-2dM">
@@ -236,17 +226,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="haK-b3-Gee">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jxw-Ac-3Qm" userLabel="background">
+                                <rect key="frame" x="35" y="61" width="310" height="545"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Q7-79-eJs">
+                                        <rect key="frame" x="39" y="391" width="67" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="redCircle">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendPhlarePressed:" destination="ggg-R0-kDK" eventType="touchUpInside" id="nHj-mj-zOu"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phlare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHc-Ak-tU8">
+                                        <rect key="frame" x="49" y="419" width="50" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iU-yA-Ifg" userLabel="Send Phlare Button2">
+                                        <rect key="frame" x="123" y="391" width="65" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="orangeCircle">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendPhlarePressed2:" destination="ggg-R0-kDK" eventType="touchUpInside" id="orX-oh-qHn"/>
+                                            <action selector="sendPhlarePressed:" destination="ggg-R0-kDK" eventType="touchUpInside" id="F8H-kV-abT"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phlare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2s-c6-oMA">
+                                        <rect key="frame" x="134" y="419" width="50" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zri-wa-JkM">
+                                        <rect key="frame" x="134" y="399" width="42" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lem-Iy-9DR">
+                                        <rect key="frame" x="203" y="389" width="68" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="yellowCircle"/>
+                                        <connections>
+                                            <action selector="sendPhlarePressed3:" destination="ggg-R0-kDK" eventType="touchUpInside" id="gpX-cI-TXq"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phlare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yg-Y0-a2D">
+                                        <rect key="frame" x="212" y="419" width="50" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mai-a8-tW4">
+                                        <rect key="frame" x="53" y="399" width="42" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIi-2S-mGk">
+                                        <rect key="frame" x="43" y="-7" width="215" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaN-CT-eNT">
+                                        <rect key="frame" x="216" y="399" width="42" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="haK-b3-Gee">
                                 <rect key="frame" x="67" y="85" width="240" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIi-2S-mGk">
-                                <rect key="frame" x="80" y="28" width="215" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEw-qX-FFd">
                                 <rect key="frame" x="16" y="26" width="25" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -276,26 +344,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Q7-79-eJs">
-                                <rect key="frame" x="60" y="462" width="255" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PHLARE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9S-Py-7D2">
+                                <rect key="frame" x="156" y="30" width="63" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.76173560986520195" blue="0.3967947754974841" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Send Phlare">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendPhlarePressed:" destination="ggg-R0-kDK" eventType="touchUpInside" id="nHj-mj-zOu"/>
-                                </connections>
-                            </button>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="PhoneNumber" destination="gjh-UQ-dwR" id="FPI-pJ-48K"/>
+                        <outlet property="background" destination="Jxw-Ac-3Qm" id="uXW-5U-OFq"/>
                         <outlet property="image" destination="haK-b3-Gee" id="Uq5-7w-DBn"/>
                         <outlet property="namelabel" destination="TIi-2S-mGk" id="JGC-Ge-1rL"/>
                         <outlet property="sendPhlareButton" destination="0Q7-79-eJs" id="teE-mu-Yza"/>
+                        <outlet property="sendPhlareButton2" destination="4iU-yA-Ifg" id="NAD-I1-Rz9"/>
+                        <outlet property="sendPhlareButton3" destination="Lem-Iy-9DR" id="xEu-WG-k7F"/>
                         <outlet property="tempLabel" destination="Zfq-gZ-g2w" id="CbX-rv-qE4"/>
                     </connections>
                 </viewController>
@@ -306,7 +372,10 @@
     </scenes>
     <resources>
         <image name="back" width="64" height="64"/>
+        <image name="orangeCircle" width="128" height="128"/>
+        <image name="redCircle" width="128" height="128"/>
         <image name="user" width="128" height="128"/>
+        <image name="yellowCircle" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UsY-gx-eiL"/>

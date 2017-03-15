@@ -30,7 +30,10 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
     @IBOutlet weak var namelabel: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var sendPhlareButton: UIButton!
+    @IBOutlet weak var sendPhlareButton2: UIButton!
+    @IBOutlet weak var sendPhlareButton3: UIButton!
     @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var background: UIView!
     
     override func viewDidLoad()
     {
@@ -52,6 +55,10 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
         //tap.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tap)
+        
+        // styling
+        background.layer.cornerRadius = 8
+        image.layer.cornerRadius = 8
     
     }
     
@@ -82,6 +89,28 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
         }
         NameAndPhoneNumber = PhoneNumber.text! + "*" +  myName
         phlareManager.sendData(ID_and_Name: NameAndPhoneNumber)   ///COME BACK HERE
+        phlareManager.send(colorName: "red")
+    }
+    
+    @IBAction func sendPhlarePressed2(_ sender: Any) {
+        //tell the person who recieved the phlare that the sender did not send his/her phone number
+        if(PhoneNumber.text == "")
+        {
+            PhoneNumber.text = "This user did not send their phone number!"
+        }
+        NameAndPhoneNumber = PhoneNumber.text! + "*" +  myName
+        phlareManager.sendData(ID_and_Name: NameAndPhoneNumber)   ///COME BACK HERE
+        phlareManager.send(colorName: "orange")
+    }
+    @IBAction func sendPhlarePressed3(_ sender: Any) {
+        //tell the person who recieved the phlare that the sender did not send his/her phone number
+        if(PhoneNumber.text == "")
+        {
+            PhoneNumber.text = "This user did not send their phone number!"
+        }
+        NameAndPhoneNumber = PhoneNumber.text! + "*" +  myName
+        phlareManager.sendData(ID_and_Name: NameAndPhoneNumber)   ///COME BACK HERE
+        phlareManager.send(colorName: "yellow")
     }
     
     func setData(data: String)  //you got some Phlare data from a peer so set some variables
@@ -112,7 +141,7 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
         SMSButton.setTitleColor(UIColor.white, for: .normal)
         SMSButton.titleLabel!.font = UIFont(name: "Futura", size: 17)
         SMSButton.addTarget(self, action: #selector(SMSButtonPressed), for: .touchUpInside)
-        SMSButton.backgroundColor = UIColor.green
+        SMSButton.backgroundColor = UIColor.gray
         SMSButton.alpha = 0.6
         SMSButton.clipsToBounds = true
         SMSButton.layer.cornerRadius = 0
@@ -142,12 +171,21 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    func change(color : UIColor)
+    {
+        UIView.animate(withDuration: 0.2)
+        {
+            self.background.backgroundColor = color
+        }
+    }
 }
 
 protocol PhlareManagerDelegate
 {
     func connectedDevicesChanged(manager : PhlareManager, connectedDevices: [String])
     func peerData(manager: PhlareManager, userData: String)
+    func colorChanged(manager : PhlareManager, colorString: String)
 }
 
 class PhlareManager: NSObject
@@ -205,6 +243,21 @@ class PhlareManager: NSObject
             }
         }
     }
+    func send(colorName : String)
+    {
+        if session.connectedPeers.count > 0
+        {
+            do
+            {
+                try self.session.send(colorName.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+            }
+            catch let error
+            {
+                NSLog("%@", "Error for sending: \(error)")
+            }
+        }
+        
+    }
 }
 
 
@@ -223,6 +276,23 @@ extension ProfileViewController : PhlareManagerDelegate
         OperationQueue.main.addOperation
             {
                 self.setData(data:userData)
+        }
+    }
+    func colorChanged(manager: PhlareManager, colorString: String)
+    {
+        OperationQueue.main.addOperation
+            {
+                switch colorString
+                {
+                case "red":
+                    self.change(color: .red)
+                case "yellow":
+                    self.change(color: .yellow)
+                case "orange":
+                    self.change(color: .orange)
+                default:
+                    NSLog("%@", "Unknown color value received: \(colorString)")
+                }
         }
     }
     
@@ -276,6 +346,7 @@ extension PhlareManager : MCSessionDelegate
         NSLog("%@", "didReceiveData: \(data)")
         let str = String(data: data, encoding: .utf8)!
         self.delegate?.peerData(manager:self, userData: str) //call peerLocation with the data the peer sent you
+        self.delegate?.colorChanged(manager: self, colorString: str)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID)
