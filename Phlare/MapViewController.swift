@@ -293,9 +293,6 @@ protocol CommunicationManagerDelegate
 
 class CommunicationManager : NSObject
 {
-    // Service type must be a unique string, at most 15 characters long
-    // and can contain only ASCII lowercase letters, numbers and hyphens.
-    
     var delegate : CommunicationManagerDelegate?
     
     private let CommunicationType = "example-data"

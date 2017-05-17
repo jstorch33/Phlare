@@ -51,9 +51,6 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
         
         // styling
@@ -168,7 +165,6 @@ class ProfileViewController: UIViewController, MFMessageComposeViewControllerDel
     
     func dismissKeyboard()
     {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
@@ -190,9 +186,7 @@ protocol PhlareManagerDelegate
 
 class PhlareManager: NSObject
 {
-    // Service type must be a unique string, at most 15 characters long
-    // and can contain only ASCII lowercase letters, numbers and hyphens.
-    
+
     var delegate : PhlareManagerDelegate?
     
     private let CommunicationType = "example-data"
